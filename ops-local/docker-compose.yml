@@ -1,0 +1,31 @@
+version: '2'
+services:
+  wfeservices:
+    container_name: wfeservices
+    build: ./wfeservices
+    restart: always
+    networks:
+      - wfeservices-network
+      - wfespa-network
+    dns:
+      - 8.8.8.8
+    ports:
+      - "8080:8080"
+      - "5080:5080"
+  wfespa:
+    container_name: wfespa
+    build: ./wfespa
+    restart: always
+    networks:
+      - wfespa-network
+    ports:
+      - "8888:80"
+    depends_on:
+      - wfeservices
+    links:
+      - wfeservices
+networks:
+  wfeservices-network:
+    driver: bridge
+  wfespa-network:
+    driver: bridge
