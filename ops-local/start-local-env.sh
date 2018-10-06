@@ -6,10 +6,10 @@ pushd ../ztm-services
 mvn clean package -DskipTests
 
 popd
-cp ../ztm-services/target/ztmtimetable*.jar ./wfeservices/wfeservices.jar
+cp ../ztm-services/target/ztm-services*.jar ./wfeservices/wfeservices.jar
 
 # Build wfespa
-rm -r -f ./ztm-spa/dist
+rm -r -f ./wfespa/dist
 
 pushd ../ztm-spa && npm install && bower install && gulp
 popd
