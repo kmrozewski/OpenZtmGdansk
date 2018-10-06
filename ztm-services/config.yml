@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+ztm:
+  executorPoolCount: 10
+  estimateServiceUrl: "http://87.98.237.99:88/delays"
+
+logging:
+  level:
+    org.springframework.web: ERROR
+    com.books: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
