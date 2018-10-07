@@ -16,4 +16,4 @@ popd
 cp -r ../ztm-spa/dist ./wfespa
 
 # Start docker-compose
-docker-compose up --build
+docker-compose up --build -d
