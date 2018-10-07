@@ -6,10 +6,12 @@
         .controller('MainController', MainController);
 
     /** @ngInject */
-    function MainController($scope) {
+    function MainController($scope, $interval, REFRESH_INTERVAL) {
         $scope.lastUpdate = "";
         $scope.hasError = false;
         $scope.isLoading = false;
+
+        $interval(refreshResults, REFRESH_INTERVAL);
 
         $scope.tabClicked = function(stopId) {
             $scope.$broadcast('estimateTabClicked', stopId);
@@ -20,5 +22,9 @@
             $scope.hasError = args.hasError;
             $scope.isLoading = args.isLoading;
         });
+
+        function refreshResults() {
+            $scope.$broadcast('refreshResults', $scope.tabId);
+        }
     }
 })();

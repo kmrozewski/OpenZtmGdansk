@@ -15,6 +15,12 @@
                         }
                     });
 
+                    $scope.$on('refreshResults', function(event, args) {
+                        if ($scope.tabId === args) {
+                            getEstimate($scope.stopIds);
+                        }
+                    })
+
                     if ($scope.isMain) {
                         getEstimate($scope.stopIds);
                     }
@@ -60,7 +66,8 @@
                 templateUrl: 'app/components/estimate/estimate.html',
                 scope: {
                     isMain: '=',
-                    stopIds: '='
+                    stopIds: '=',
+                    tabId: '='
                 }
             };
         })
