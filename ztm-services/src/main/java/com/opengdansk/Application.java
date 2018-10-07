@@ -1,9 +1,9 @@
-package com.opengdansk.ztmtimetable;
+package com.opengdansk;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = "com.opengdansk.ztmtimetable")
+@SpringBootApplication(scanBasePackages = "com.opengdansk")
 public class Application {
 
     public static void main(String[] args) {

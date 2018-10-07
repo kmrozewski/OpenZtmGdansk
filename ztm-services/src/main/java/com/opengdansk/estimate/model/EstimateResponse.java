@@ -1,4 +1,4 @@
-package com.opengdansk.ztmtimetable.estimate.model;
+package com.opengdansk.estimate.model;
 
 import java.util.List;
 

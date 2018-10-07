@@ -1,5 +1,7 @@
-package com.opengdansk.ztmtimetable.estimate.client;
+package com.opengdansk.estimate.client;
 
+import com.opengdansk.estimate.configuration.ZtmApiConfiguration;
+import com.opengdansk.estimate.model.EstimateResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
@@ -8,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import com.opengdansk.ztmtimetable.estimate.configuration.ZtmApiConfiguration;
-import com.opengdansk.ztmtimetable.estimate.model.EstimateResponse;
 
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))

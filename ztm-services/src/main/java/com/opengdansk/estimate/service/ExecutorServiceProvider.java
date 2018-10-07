@@ -1,14 +1,13 @@
-package com.opengdansk.ztmtimetable.estimate.service;
+package com.opengdansk.estimate.service;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.opengdansk.estimate.configuration.ZtmApiConfiguration;
 import lombok.Getter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.opengdansk.ztmtimetable.estimate.configuration.ZtmApiConfiguration;
 
 @Component
 public class ExecutorServiceProvider {

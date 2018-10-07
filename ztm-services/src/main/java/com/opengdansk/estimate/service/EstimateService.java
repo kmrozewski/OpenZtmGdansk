@@ -1,10 +1,12 @@
-package com.opengdansk.ztmtimetable.estimate.service;
+package com.opengdansk.estimate.service;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
+import com.opengdansk.estimate.model.Delay;
+import com.opengdansk.estimate.model.EstimateResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
@@ -12,9 +14,7 @@ import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.opengdansk.ztmtimetable.estimate.client.RestfulClient;
-import com.opengdansk.ztmtimetable.estimate.model.Delay;
-import com.opengdansk.ztmtimetable.estimate.model.EstimateResponse;
+import com.opengdansk.estimate.client.RestfulClient;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))

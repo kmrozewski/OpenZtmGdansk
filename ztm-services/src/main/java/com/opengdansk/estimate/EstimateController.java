@@ -1,4 +1,4 @@
-package com.opengdansk.ztmtimetable.estimate;
+package com.opengdansk.estimate;
 
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.opengdansk.ztmtimetable.estimate.service.EstimateService;
+import com.opengdansk.estimate.service.EstimateService;
 
 @Controller
 @RequestMapping(produces = APPLICATION_JSON_VALUE)

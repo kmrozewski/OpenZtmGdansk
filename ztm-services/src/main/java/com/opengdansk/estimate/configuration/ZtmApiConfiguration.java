@@ -1,4 +1,4 @@
-package com.opengdansk.ztmtimetable.estimate.configuration;
+package com.opengdansk.estimate.configuration;
 
 import lombok.Getter;
 import lombok.Setter;
