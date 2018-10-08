@@ -3,7 +3,7 @@ package com.opengdansk.estimate.service;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.opengdansk.estimate.configuration.ZtmApiConfiguration;
+import com.opengdansk.configuration.ZtmApiConfiguration;
 import lombok.Getter;
 
 import org.springframework.beans.factory.annotation.Autowired;

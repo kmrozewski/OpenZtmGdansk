@@ -1,6 +1,6 @@
 package com.opengdansk.estimate.client;
 
-import com.opengdansk.estimate.configuration.ZtmApiConfiguration;
+import com.opengdansk.configuration.ZtmApiConfiguration;
 import com.opengdansk.estimate.model.EstimateResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class RestfulClient {
+public class EstimateRestfulClient {
 
     private static final String STOP_ID_QUERY_PARAM = "stopId";
 
