@@ -1,15 +1,15 @@
 package com.opengdansk.announcement.model;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
 @Builder
-@Data
+@Value
 public class Announcement {
 
-    private String displayCode;
+    private Integer displayCode;
     private String displayName;
-    private String stopId;
+    private Integer stopId;
     private String message;
     private String startDate;
     private String endDate;

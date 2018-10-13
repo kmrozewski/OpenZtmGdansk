@@ -1,37 +1,33 @@
 package com.opengdansk.announcement.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 @Getter
 @Setter
 public class StopDisplayTable {
 
-    private Integer displayCode;
-    private String name;
-    private List<Integer> stopIds;
+    protected String name;
+    protected List<Integer> stopIds;
 
-    @JsonCreator
-    public StopDisplayTable(@JsonProperty("displayCode") Integer displayCode,
-                            @JsonProperty("name") String name,
-                            @JsonProperty("idStop1") Integer stopId1,
-                            @JsonProperty("idStop2") Integer stopId2,
-                            @JsonProperty("idStop3") Integer stopId3,
-                            @JsonProperty("idStop4") Integer stopId4) {
-
+    public StopDisplayTable(Map<String, Object> entry) {
         if (stopIds == null) {
             this.stopIds = new ArrayList<>();
         }
 
-        this.name = name;
-        this.displayCode = displayCode;
-        Stream.of(stopId1, stopId2, stopId3, stopId4).forEach(this::append);
+        this.name = (String) entry.get("name");
+        Stream
+                .of(
+                        (Integer) entry.get("idStop1"),
+                        (Integer) entry.get("idStop2"),
+                        (Integer) entry.get("idStop3"),
+                        (Integer) entry.get("idStop4"))
+                .forEach(this::append);
     }
 
     private void append(Integer stopId) {
