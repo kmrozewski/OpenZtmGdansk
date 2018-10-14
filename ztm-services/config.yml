@@ -4,6 +4,8 @@ server:
 ztm:
   executorPoolCount: 10
   estimateServiceUrl: "http://87.98.237.99:88/delays"
+  stopTableListUrl: "http://91.244.248.19/dataset/c24aa637-3619-4dc2-a171-a23eec8f2172/resource/25e0de48-1acd-4ee5-9bc5-45cb5a55b32f/download/displays.json"
+  displayMessageListUrl: "http://87.98.237.99:88/displayMessages"
 
 logging:
   level:

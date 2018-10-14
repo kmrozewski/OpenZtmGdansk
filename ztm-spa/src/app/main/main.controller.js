@@ -18,7 +18,6 @@
         };
 
         $scope.$on('estimateUpdated', function(event, args) {
-            $scope.lastUpdate = args.lastUpdate;
             $scope.hasError = args.hasError;
             $scope.isLoading = args.isLoading;
         });

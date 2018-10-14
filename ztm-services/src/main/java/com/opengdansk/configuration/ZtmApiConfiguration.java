@@ -1,4 +1,4 @@
-package com.opengdansk.estimate.configuration;
+package com.opengdansk.configuration;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,4 +16,6 @@ public class ZtmApiConfiguration {
 
     private Integer executorPoolCount;
     private String estimateServiceUrl;
+    private String stopTableListUrl;
+    private String displayMessageListUrl;
 }

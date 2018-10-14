@@ -14,14 +14,14 @@ import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.opengdansk.estimate.client.RestfulClient;
+import com.opengdansk.estimate.client.EstimateRestfulClient;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class EstimateService {
 
     @NonNull
-    private final RestfulClient client;
+    private final EstimateRestfulClient client;
 
     @NonNull
     private final ExecutorServiceProvider executorService;
