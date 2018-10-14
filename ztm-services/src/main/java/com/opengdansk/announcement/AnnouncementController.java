@@ -10,11 +10,15 @@ import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 @RequestMapping(produces = APPLICATION_JSON_VALUE, value = "announcement")
@@ -30,6 +34,13 @@ public class AnnouncementController {
     @RequestMapping(value = "announcement", method = GET)
     public ResponseEntity getAnnouncements() {
         val response = announcementService.getAnnouncements();
+
+        return new ResponseEntity<>(response, OK);
+    }
+
+    @RequestMapping(value = "announcement", method = POST)
+    public ResponseEntity getAnnouncementsByStopIds(@RequestBody List<Integer> stopIds) {
+        val response = announcementService.getAnnouncementsByStopIds(stopIds);
 
         return new ResponseEntity<>(response, OK);
     }

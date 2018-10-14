@@ -21,8 +21,16 @@ public class AnnouncementService {
     @NonNull
     private final StopDisplayService service;
 
+
     public List<Announcement> getAnnouncements() {
-        val tables = service.getTables().getDisplayMap();
+       return mergeToAnnouncements(service.getTables().getDisplayMap());
+    }
+
+    public List<Announcement> getAnnouncementsByStopIds(List<Integer> stopIds) {
+        return mergeToAnnouncements(service.getAnnouncementByStopIds(stopIds));
+    }
+
+    private List<Announcement> mergeToAnnouncements(Map<Integer, StopDisplayTable> tables) {
         val messages = service.getMessages().getMessageMap();
 
         return joinMessagesWithTables(messages, tables);
