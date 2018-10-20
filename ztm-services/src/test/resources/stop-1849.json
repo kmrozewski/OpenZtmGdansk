@@ -1,0 +1,33 @@
+{
+  "lastUpdate": "2018-10-21 00:28:01",
+  "delay": [
+    {
+      "id": "T32R412",
+      "delayInSeconds": 871,
+      "estimatedTime": "00:32",
+      "headsign": "Jasieńska",
+      "routeId": 412,
+      "tripId": 32,
+      "status": "REALTIME",
+      "theoreticalTime": "00:18",
+      "timestamp": "00:27:40",
+      "trip": 4716326,
+      "vehicleCode": 2533,
+      "vehicleId": 199
+    },
+    {
+      "id": "T32R412",
+      "delayInSeconds": 829,
+      "estimatedTime": "00:34",
+      "headsign": "Jasieńska",
+      "routeId": 412,
+      "tripId": 32,
+      "status": "REALTIME",
+      "theoreticalTime": "00:21",
+      "timestamp": "00:27:20",
+      "trip": 4716326,
+      "vehicleCode": 2533,
+      "vehicleId": 199
+    }
+  ]
+}

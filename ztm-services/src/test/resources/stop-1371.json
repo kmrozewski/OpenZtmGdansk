@@ -1,0 +1,33 @@
+{
+  "lastUpdate": "2018-10-21 00:27:01",
+  "delay": [
+    {
+      "id": "T41R402",
+      "delayInSeconds": 19,
+      "estimatedTime": "00:56",
+      "headsign": "Łostowice Świętok",
+      "routeId": 402,
+      "tripId": 41,
+      "status": "REALTIME",
+      "theoreticalTime": "00:56",
+      "timestamp": "00:27:46",
+      "trip": 4716204,
+      "vehicleCode": 2756,
+      "vehicleId": 145684
+    },
+    {
+      "id": "T42R402",
+      "delayInSeconds": 114,
+      "estimatedTime": "00:38",
+      "headsign": "Grudziądzka",
+      "routeId": 402,
+      "tripId": 42,
+      "status": "REALTIME",
+      "theoreticalTime": "00:37",
+      "timestamp": "00:27:44",
+      "trip": 4716259,
+      "vehicleCode": 2709,
+      "vehicleId": 150
+    }
+  ]
+}
