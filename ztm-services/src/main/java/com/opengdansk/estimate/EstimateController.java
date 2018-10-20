@@ -29,14 +29,14 @@ public class EstimateController {
     private final EstimateService service;
 
     @RequestMapping(value = "estimate/{stopId}", method = GET)
-    public ResponseEntity getEstimate(@PathVariable("stopId") String stopId) {
+    public ResponseEntity getEstimate(@PathVariable("stopId") Integer stopId) {
         val response = service.getEstimate(stopId);
 
         return new ResponseEntity<>(response, OK);
     }
 
     @RequestMapping(value = "estimate", method = POST)
-    public ResponseEntity getEstimates(@RequestBody List<String> stopIds) {
+    public ResponseEntity getEstimates(@RequestBody List<Integer> stopIds) {
         val response = service.getEstimateTable(stopIds);
 
         return new ResponseEntity<>(response, OK);

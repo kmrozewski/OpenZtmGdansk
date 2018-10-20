@@ -26,18 +26,18 @@ public class EstimateService {
     @NonNull
     private final ExecutorServiceProvider executorService;
 
-    public EstimateResponse getEstimate(String stopId) {
+    public EstimateResponse getEstimate(Integer stopId) {
         return client.getEstimate(stopId);
     }
 
-    public EstimateResponse getEstimateTable(List<String> stopIds) {
+    public EstimateResponse getEstimateTable(List<Integer> stopIds) {
         val tasks = startEstimateTasks(stopIds);
         val responses = collectEstimateResponses(tasks);
 
         return mergeResponses(responses);
     }
 
-    private List<CompletableFuture<EstimateResponse>> startEstimateTasks(List<String> stopIds) {
+    private List<CompletableFuture<EstimateResponse>> startEstimateTasks(List<Integer> stopIds) {
         return stopIds
             .stream()
             .map(stopId -> CompletableFuture.supplyAsync(() -> client.getEstimate(stopId), executorService.getExecutorService()))

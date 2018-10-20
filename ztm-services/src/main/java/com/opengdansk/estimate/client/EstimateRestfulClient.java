@@ -23,13 +23,13 @@ public class EstimateRestfulClient {
     @NonNull
     private final ZtmApiConfiguration configuration;
 
-    public EstimateResponse getEstimate(String stopId) {
+    public EstimateResponse getEstimate(Integer stopId) {
         val url = buildUrl(stopId);
 
         return restTemplate.getForObject(url, EstimateResponse.class);
     }
 
-    private String buildUrl(String stopId) {
+    private String buildUrl(Integer stopId) {
         return UriComponentsBuilder
             .fromHttpUrl(configuration.getEstimateServiceUrl())
             .queryParam(STOP_ID_QUERY_PARAM, stopId)
