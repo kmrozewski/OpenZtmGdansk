@@ -1,4 +1,4 @@
-package com.opengdansk.estimate;
+package com.opengdansk.estimate.service;
 
 import com.opengdansk.configuration.ZtmApiConfiguration;
 import com.opengdansk.estimate.client.EstimateRestfulClient;

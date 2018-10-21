@@ -28,7 +28,7 @@ public class StopDisplayService {
         return restTemplate.getForObject(configuration.getStopTableListUrl(), StopDisplayTableResponse.class);
     }
 
-    public Map<Integer, StopDisplayTable> getAnnouncementByStopIds(List<Integer> stopIds) {
+    public Map<Integer, StopDisplayTable> getTablesByStopIds(List<Integer> stopIds) {
         return getTables()
                 .getDisplayMap()
                 .entrySet()

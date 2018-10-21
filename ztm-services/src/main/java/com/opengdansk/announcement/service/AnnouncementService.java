@@ -27,7 +27,7 @@ public class AnnouncementService {
     }
 
     public List<Announcement> getAnnouncementsByStopIds(List<Integer> stopIds) {
-        return mergeToAnnouncements(service.getAnnouncementByStopIds(stopIds));
+        return mergeToAnnouncements(service.getTablesByStopIds(stopIds));
     }
 
     private List<Announcement> mergeToAnnouncements(Map<Integer, StopDisplayTable> tables) {

@@ -1,15 +1,13 @@
 package com.opengdansk.announcement.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
-@Getter
-@Setter
+@Data
 public class StopDisplayTable {
 
     protected String name;

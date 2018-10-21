@@ -1,0 +1,25 @@
+{
+  "lastUpdate" : "2018-10-21 00:09:49",
+  "displays" : [ {
+    "displayCode" : 504,
+    "name" : "WarneÅ„ska   A/T>centrum",
+    "idStop1" : 14540,
+    "idStop2" : 1374,
+    "idStop3" : 0,
+    "idStop4" : 0
+  }, {
+    "displayCode" : 505,
+    "name" : "WarneÅ„ska   A/T>Migowo",
+    "idStop1" : 1371,
+    "idStop2" : 14539,
+    "idStop3" : 0,
+    "idStop4" : 0
+  }, {
+    "displayCode" : 94,
+    "name" : "Galeria BaÅ‚tycka   A>Port Lotniczy",
+    "idStop1" : 1383,
+    "idStop2" : 0,
+    "idStop3" : 0,
+    "idStop4" : 0
+  }]
+}
