@@ -78,6 +78,11 @@ public class StopDisplayServiceTest {
         assertThat(filteredTableMap).isEmpty();
     }
 
+    @Test
+    public void when_ReturnedMoreThanOneMessagePerDisplayTable_Expect_MessagesToBeMerged() {
+        val messages = stopDisplayService.getMessages();
+    }
+
     private List<Integer> getStopIdsFromTableMap(Map<Integer, StopDisplayTable> tableMap) {
         return tableMap
                 .entrySet()
