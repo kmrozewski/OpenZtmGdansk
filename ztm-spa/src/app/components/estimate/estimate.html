@@ -5,9 +5,11 @@
 		</div>
 	</div>
 
-	<div ng-show="announcement" class="panel panel-warning">
-		<div class="panel-heading">
-			<h4>{{announcement.message}}</h4>
+	<div ng-show="announcements" ng-repeat="announcement in announcements">
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				<h4>{{announcement.message}}</h4>
+			</div>
 		</div>
 	</div>
 
