@@ -7,6 +7,7 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collection;
 import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -22,13 +23,16 @@ public class FixtureReader {
         }
     }
 
-    public static <T> List<T> parseFixtureToList(Class className, Class<T> outputClass, String fileName) {
+    public static <T, U extends Collection> List<T> parseFixtureToCollection(Class className,
+                                                                       Class<T> outputClass,
+                                                                       Class<U> collectionClass,
+                                                                       String fileName) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
 
             return new ObjectMapper().readValue(
                     readFixtureToString(className, fileName),
-                    objectMapper.getTypeFactory().constructCollectionType(List.class, outputClass));
+                    objectMapper.getTypeFactory().constructCollectionType(collectionClass, outputClass));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

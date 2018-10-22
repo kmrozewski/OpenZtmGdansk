@@ -24,7 +24,7 @@
 
                     AnnouncementService.getAnnouncement($scope.stopIds).$promise.then(function(response) {
                         if (response.length >= 0) {
-                            $scope.announcement = response[0];
+                            $scope.announcements = response[0];
                         }
                     })
 

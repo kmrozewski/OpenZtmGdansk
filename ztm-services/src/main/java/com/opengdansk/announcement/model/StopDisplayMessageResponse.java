@@ -12,17 +12,14 @@ import java.util.stream.Collectors;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StopDisplayMessageResponse {
 
-    private Map<Integer, StopDisplayMessage> messageMap;
+    private List<StopDisplayMessage> messages;
 
     @JsonProperty("displaysMsg")
     private void unpack(List<Map<String, Object>> entryList) {
-        messageMap = entryList
+        messages = entryList
                 .stream()
-                .map(StopDisplayMessageId::new)
-                .collect(Collectors.toMap(
-                        StopDisplayMessageId::getDisplayCode,
-                        StopDisplayMessageId::getStopDisplayMessage,
-                        (oldValue, newValue) -> oldValue));
+                .map(StopDisplayMessage::new)
+                .collect(Collectors.toList());
     }
 }
 

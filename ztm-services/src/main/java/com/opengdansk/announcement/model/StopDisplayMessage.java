@@ -1,13 +1,11 @@
 package com.opengdansk.announcement.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.Map;
 
-@Getter
-@Setter
+@Data
 public class StopDisplayMessage {
 
     private Integer displayCode;
