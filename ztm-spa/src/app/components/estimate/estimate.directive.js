@@ -44,6 +44,7 @@
                     }
 
                     function getEstimateSuccess(response) {
+                        console.log(response);
                         counter = 0;
                         $scope.lastUpdate = response.lastUpdate;
                         update(false, false);
