@@ -2,9 +2,9 @@
   "name": "ztmSpa",
   "version": "0.0.0",
   "dependencies": {
-    "angular-resource": "~1.5.3",
+    "angular-resource": "~1.5.11",
     "angular-ui-router": "~0.2.15",
-    "angular": "~1.5.3",
+    "angular": "^1.7.5",
     "angular-bootstrap": "^2.5.0"
   },
   "devDependencies": {
