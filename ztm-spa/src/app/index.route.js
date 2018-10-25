@@ -15,9 +15,16 @@
         controllerAs: 'main'
       })
       .state('search', {
-        url: '/search/{stopId:int}', //TODO: use state parameters
+        url: '/search/{stopName}',
         templateUrl: 'app/search/search.html',
-        controller: 'SearchController'
+        controller: 'SearchController',
+        params: {
+          'stopIds': {
+            'array': true,
+            'inherit': true
+          },
+          'stopName': null
+        }
       })
       .state('about', {
         url: '/about',
