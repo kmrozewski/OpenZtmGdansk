@@ -8,9 +8,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static java.util.Collections.emptyList;
 
@@ -28,7 +30,14 @@ public class SearchService {
     public StopNameAgg getStopByName(String stopName) {
         return Optional
                 .ofNullable(stopMapBean.getStopsMap().get(stopName))
-                .map(codes -> StopNameAgg.builder().name(stopName).codes(codes).build())
+                .map(codes -> StopNameAgg.builder().name(stopName).codes(sortByStopCode(codes)).build())
                 .orElse(StopNameAgg.builder().name(stopName).codes(emptyList()).build());
+    }
+
+    private List<StopCodeAgg> sortByStopCode(List<StopCodeAgg> codes) {
+        return codes
+                .stream()
+                .sorted(Comparator.comparing(StopCodeAgg::getCode))
+                .collect(Collectors.toList());
     }
 }
