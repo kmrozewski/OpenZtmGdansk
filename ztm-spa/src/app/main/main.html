@@ -1,9 +1,4 @@
-<div ng-if="hasError" class="panel panel-error" style="margin-top: 20px;">
-	<div class="panel-heading">
-		<h2>Problem z ładowaniem danych. Spróbuj później</h2>
-	</div>
-</div>
-<uib-tabset active="tabId" style="margin-top: 10px;">
+<uib-tabset active="tabId">
 <uib-tab heading="Wołkowyska-Centrum" ng-click="tabClicked([1848, 14547])">
 <estimate is-main="true" stop-ids="[1848, 14547]" tab-id="0"/>
 </uib-tab>
@@ -17,4 +12,10 @@
 <estimate stop-ids="[1371, 14539]" tab-id="3"/>
 </uib-tab>
 </uib-tabset>
+
+<div ng-if="hasError" class="panel panel-danger">
+	<div class="panel-heading">
+		<h4>Problem z ładowaniem danych. Spróbuj później</h4>
+	</div>
+</div>
 <div ng-if="isLoading" class="loader"></div>

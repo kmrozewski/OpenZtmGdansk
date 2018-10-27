@@ -3,12 +3,13 @@
 
     angular
         .module('ztmSpa')
-        .directive('estimate', function(EstimateService, AnnouncementService) {
+        .directive('estimate', function(EstimateService, AnnouncementService, REFRESH_INTERVAL) {
             return {
                 controller: function($scope) {
                     var counter = 0;
                     $scope.delays = [];
                     $scope.lastUpdate = "";
+                    $scope.updateInterval = REFRESH_INTERVAL / 1000;
 
                     $scope.$on('estimateTabClicked', function(event, args) {
                         if (angular.isArray(args) && isInDirectiveStopIds(args)) {
@@ -39,7 +40,7 @@
                     }
 
                     function getEstimate(stopIds) {
-                        update("", false, true);
+                        update(false, true);
                         return EstimateService.getEstimate(stopIds).$promise.then(getEstimateSuccess, getEstimateError);
                     }
 
@@ -57,7 +58,7 @@
                         if (counter <= 3) {
                             getEstimate($scope.stopIds);
                         } else {
-                            update("", true, false);
+                            update(true, false);
                             $scope.hasError = true;
                         }
                     }

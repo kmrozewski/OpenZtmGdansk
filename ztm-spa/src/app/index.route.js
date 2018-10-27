@@ -19,10 +19,6 @@
         templateUrl: 'app/search/search.html',
         controller: 'SearchController',
         params: {
-          'stopIds': {
-            'array': true,
-            'inherit': true
-          },
           'stopName': null
         }
       })

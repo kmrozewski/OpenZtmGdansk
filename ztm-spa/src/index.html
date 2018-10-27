@@ -34,11 +34,9 @@
                     <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" ui-sref="home"><span class="fas fa-bus"></span></a>
+
                     <div class="navbar-form navbar-left" ng-controller="SearchController">
-                        <div class="input-group">
-                            <input type="text" ng-model="selected" uib-typeahead="stop as stop.name for stop in stops | filter:$viewValue | limitTo:20" class="form-control" typeahead-on-select="searchClicked($item)" placeholder="Wyszukaj przystanek...">
-                            <span class="input-group-addon glyphicon glyphicon-search"></span>
-                        </div>
+                            <input type="text" ng-model="selected" uib-typeahead="stop for stop in stops | filter:$viewValue | limitTo:20" class="form-control" typeahead-on-select="searchClicked($item)" placeholder="Wyszukaj przystanek...">
                     </div>
                 </div>
                 <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
