@@ -4,8 +4,6 @@ import com.opengdansk.configuration.ZtmApiConfiguration;
 import com.opengdansk.estimate.client.EstimateRestfulClient;
 import com.opengdansk.estimate.model.Delay;
 import com.opengdansk.estimate.model.EstimateResponse;
-import com.opengdansk.estimate.service.EstimateService;
-import com.opengdansk.estimate.service.ExecutorServiceProvider;
 import lombok.val;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +17,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.concurrent.ExecutorService;
 
-import static com.opengdansk.reader.FixtureReader.parseFixture;
+import static com.opengdansk.search.reader.JsonReader.parseFixture;
 import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;

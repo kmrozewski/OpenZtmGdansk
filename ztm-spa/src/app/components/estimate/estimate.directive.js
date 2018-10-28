@@ -3,12 +3,13 @@
 
     angular
         .module('ztmSpa')
-        .directive('estimate', function(EstimateService, AnnouncementService) {
+        .directive('estimate', function(EstimateService, AnnouncementService, REFRESH_INTERVAL) {
             return {
                 controller: function($scope) {
                     var counter = 0;
                     $scope.delays = [];
                     $scope.lastUpdate = "";
+                    $scope.updateInterval = REFRESH_INTERVAL / 1000;
 
                     $scope.$on('estimateTabClicked', function(event, args) {
                         if (angular.isArray(args) && isInDirectiveStopIds(args)) {
@@ -39,14 +40,14 @@
                     }
 
                     function getEstimate(stopIds) {
-                        update("", false, true);
+                        update(false, true, false);
                         return EstimateService.getEstimate(stopIds).$promise.then(getEstimateSuccess, getEstimateError);
                     }
 
                     function getEstimateSuccess(response) {
                         counter = 0;
                         $scope.lastUpdate = response.lastUpdate;
-                        update(false, false);
+                        update(false, false, response.delay.length === 0);
                         $scope.delays = response.delay;
                     }
 
@@ -56,15 +57,16 @@
                         if (counter <= 3) {
                             getEstimate($scope.stopIds);
                         } else {
-                            update("", true, false);
+                            update(true, false, true);
                             $scope.hasError = true;
                         }
                     }
 
-                    function update(hasError, isLoading) {
+                    function update(hasError, isLoading, notFound) {
                         $scope.$emit('estimateUpdated', {
                             hasError: hasError,
-                            isLoading: isLoading
+                            isLoading: isLoading,
+                            notFound: notFound
                         });
                     }
                 },

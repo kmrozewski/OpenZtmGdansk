@@ -1,0 +1,27 @@
+<div ng-if="stopName" class="panel panel-info">
+	<div class="panel-heading">
+		<h4>Przystanek: {{stopName}}</h4>
+	</div>
+</div>
+
+<uib-tabset active="tabId">
+	<uib-tab ng-repeat="stopCode in stopCodes track by $index"  heading="{{stopName + ' ' + stopCode.code}}" ng-click="tabClicked($index)">
+		<estimate is-main="$index === 0 ? true : false" stop-ids="stopIds[$index]" tab-id="$index"/>
+	</uib-tab>
+</uib-tabset>
+
+<div ng-if="hasError" class="panel panel-danger">
+	<div class="panel-heading">
+		<h4>Problem z ładowaniem danych. Spróbuj później</h4>
+	</div>
+</div>
+
+<div ng-if="notFound">
+	<div class="panel panel-warning">
+		<div class="panel-heading">
+			<h4>Brak pojazdów komunikacji miejskiej dla tego przystanku.</h4>
+		</div>
+	</div>
+</div>
+
+<div ng-if="isLoading" class="loader"></div>

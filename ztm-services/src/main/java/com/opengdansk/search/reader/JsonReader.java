@@ -1,4 +1,4 @@
-package com.opengdansk.reader;
+package com.opengdansk.search.reader;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AccessLevel;
@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class FixtureReader {
+public class JsonReader {
 
     private static final String ENCODING = "UTF-8";
 
@@ -24,9 +24,9 @@ public class FixtureReader {
     }
 
     public static <T, U extends Collection> List<T> parseFixtureToCollection(Class className,
-                                                                       Class<T> outputClass,
-                                                                       Class<U> collectionClass,
-                                                                       String fileName) {
+                                                                             Class<T> outputClass,
+                                                                             Class<U> collectionClass,
+                                                                             String fileName) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
 

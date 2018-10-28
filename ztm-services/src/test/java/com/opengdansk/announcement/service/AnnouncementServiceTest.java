@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static com.opengdansk.announcement.service.AnnouncementServiceTest.Fixtures.FILTERED_TABLE_MAP;
-import static com.opengdansk.reader.FixtureReader.parseFixture;
+import static com.opengdansk.search.reader.JsonReader.parseFixture;
 import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;

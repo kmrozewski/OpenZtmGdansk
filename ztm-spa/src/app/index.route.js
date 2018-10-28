@@ -14,6 +14,14 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
+      .state('search', {
+        url: '/search/{stopName}',
+        templateUrl: 'app/search/search.html',
+        controller: 'SearchController',
+        params: {
+          'stopName': null
+        }
+      })
       .state('about', {
         url: '/about',
         templateUrl: 'app/about/about.html'
