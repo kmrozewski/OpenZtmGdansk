@@ -12,7 +12,6 @@
                 },
                 link: function(scope) {
                     AnnouncementService.getAnnouncements().$promise.then(function(response) {
-                        console.log(response);
                         if (response.length >= 0) {
                             scope.messages = response;
                         }
