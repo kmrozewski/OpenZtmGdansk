@@ -3,11 +3,12 @@
 
     angular
         .module('ztmSpa')
-        .directive('estimate', function(EstimateService, AnnouncementService, REFRESH_INTERVAL) {
+        .directive('estimate', function(EstimateService, REFRESH_INTERVAL) {
             return {
                 controller: function($scope) {
                     var counter = 0;
                     $scope.delays = [];
+                    $scope.messages = [];
                     $scope.lastUpdate = "";
                     $scope.updateInterval = REFRESH_INTERVAL / 1000;
 
@@ -20,12 +21,6 @@
                     $scope.$on('refreshResults', function(event, args) {
                         if ($scope.tabId === args) {
                             getEstimate($scope.stopIds);
-                        }
-                    })
-
-                    AnnouncementService.getAnnouncement($scope.stopIds).$promise.then(function(response) {
-                        if (response.length >= 0) {
-                            $scope.announcements = response;
                         }
                     })
 

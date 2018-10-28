@@ -8,10 +8,10 @@
   /** @ngInject */
   function announcementService(Announcement) {
 
-    this.getAnnouncement = getAnnouncement;
+    this.getAnnouncements = getAnnouncements;
 
-    function getAnnouncement(stopIds) {
-      return Announcement.post(stopIds);
+    function getAnnouncements() {
+      return Announcement.getAll();
     }
   }
 

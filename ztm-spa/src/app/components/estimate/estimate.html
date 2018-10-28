@@ -5,13 +5,7 @@
 		</div>
 	</div>
 
-	<div ng-show="announcements" ng-repeat="announcement in announcements">
-		<div class="panel panel-warning">
-			<div class="panel-heading">
-				<h4>{{announcement.message}}</h4>
-			</div>
-		</div>
-	</div>
+	<announcement messages="messages"/>
 
 	<div ng-repeat="delay in delays">
 		<div class="panel panel-default" ng-class="delay.delayInSeconds <= 0 ? 'panel-success' : 'panel-danger'">
