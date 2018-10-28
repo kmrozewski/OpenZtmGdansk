@@ -1,18 +1,20 @@
 (function() {
-  'use strict';
+    'use strict';
 
-  angular
-      .module('ztmSpa')
-      .service('SearchService', searchService);
+    angular
+        .module('ztmSpa')
+        .service('SearchService', searchService);
 
-  /** @ngInject */
-  function searchService(Search) {
+    /** @ngInject */
+    function searchService(Search) {
 
-    this.searchByName = searchByName;
+        this.searchByName = searchByName;
 
-    function searchByName(stopName) {
-      return Search.getByName({'stopName': stopName});
+        function searchByName(stopName) {
+            return Search.getByName({
+                'stopName': stopName
+            });
+        }
     }
-  }
 
 })();

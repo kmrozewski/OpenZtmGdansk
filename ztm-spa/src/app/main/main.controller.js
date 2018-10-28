@@ -20,6 +20,7 @@
         $scope.$on('estimateUpdated', function(event, args) {
             $scope.hasError = args.hasError;
             $scope.isLoading = args.isLoading;
+            $scope.notFound = args.notFound;
         });
 
         function refreshResults() {

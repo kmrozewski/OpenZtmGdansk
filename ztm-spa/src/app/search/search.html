@@ -16,4 +16,12 @@
 	</div>
 </div>
 
+<div ng-if="notFound">
+	<div class="panel panel-warning">
+		<div class="panel-heading">
+			<h4>Brak pojazdów komunikacji miejskiej dla tego przystanku.</h4>
+		</div>
+	</div>
+</div>
+
 <div ng-if="isLoading" class="loader"></div>

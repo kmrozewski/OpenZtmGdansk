@@ -40,15 +40,14 @@
                     }
 
                     function getEstimate(stopIds) {
-                        update(false, true);
+                        update(false, true, false);
                         return EstimateService.getEstimate(stopIds).$promise.then(getEstimateSuccess, getEstimateError);
                     }
 
                     function getEstimateSuccess(response) {
-                        console.log(response);
                         counter = 0;
                         $scope.lastUpdate = response.lastUpdate;
-                        update(false, false);
+                        update(false, false, response.delay.length === 0);
                         $scope.delays = response.delay;
                     }
 
@@ -58,15 +57,16 @@
                         if (counter <= 3) {
                             getEstimate($scope.stopIds);
                         } else {
-                            update(true, false);
+                            update(true, false, true);
                             $scope.hasError = true;
                         }
                     }
 
-                    function update(hasError, isLoading) {
+                    function update(hasError, isLoading, notFound) {
                         $scope.$emit('estimateUpdated', {
                             hasError: hasError,
-                            isLoading: isLoading
+                            isLoading: isLoading,
+                            notFound: notFound
                         });
                     }
                 },

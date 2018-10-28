@@ -34,9 +34,18 @@
                     <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" ui-sref="home"><span class="fas fa-bus"></span></a>
-
                     <div class="navbar-form navbar-left" ng-controller="SearchController">
-                            <input type="text" ng-model="selected" uib-typeahead="stop for stop in stops | filter:$viewValue | limitTo:20" class="form-control" typeahead-on-select="searchClicked($item)" placeholder="Wyszukaj przystanek...">
+                        <input type="search"
+                        ng-model="asyncSelected"
+                        class="form-control"
+                        uib-typeahead="stop for stop in stops | filter:$viewValue | limitTo:20"
+                        typeahead-min-length="3"
+                        typeahead-on-select="searchClicked($item); asyncSelected = '';"
+                        placeholder="Wyszukaj przystanek...">
+                        <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                        <div ng-show="noResults">
+                            <i class="glyphicon glyphicon-remove"></i> No Results Found
+                        </div>
                     </div>
                 </div>
                 <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">

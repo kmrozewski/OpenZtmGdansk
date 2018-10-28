@@ -10,21 +10,19 @@
         $scope.lastUpdate = "";
         $scope.hasError = false;
         $scope.isLoading = false;
+        $scope.selected = "";
         $scope.stops = [];
         $scope.stopCodes = [];
         $scope.stopIds = [];
 
         $http.get('app/search/stops.json').then(function(data) {
-            $scope.stops = data.data;
-        });
+                $scope.stops = data.data;
+            });
 
         $interval(refreshResults, REFRESH_INTERVAL);
 
         if ($stateParams.stopName) {
             $scope.stopName = $stateParams.stopName;
-        }
-
-        if ($scope.stopName) {
             SearchService.searchByName($scope.stopName).$promise.then(function(response) {
                 $scope.stopCodes = response.codes;
                 $scope.stopIds = getStopIds();
@@ -44,10 +42,15 @@
         $scope.$on('estimateUpdated', function(event, args) {
             $scope.hasError = args.hasError;
             $scope.isLoading = args.isLoading;
+            $scope.notFound = args.notFound;
         });
 
         function getStopIds() {
-            return $scope.stopCodes.map(function(stopCode) { return stopCode.stops.map(function(stop){ return stop.id; }) });
+            return $scope.stopCodes.map(function(stopCode) {
+                return stopCode.stops.map(function(stop) {
+                    return stop.id;
+                })
+            });
         }
 
         function refreshResults() {
