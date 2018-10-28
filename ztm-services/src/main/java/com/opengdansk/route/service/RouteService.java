@@ -7,12 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-
-import static java.util.function.Function.identity;
-import static java.util.stream.Collectors.toMap;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -25,11 +20,9 @@ public class RouteService {
         return routeMapBean.getRoutesMap();
     }
 
-    public Map<Integer, Route> getRouteMapSubset(List<Integer> routeIds) {
-        return routeIds
-                .stream()
-                .map(routeId -> routeMapBean.getRoutesMap().get(routeId))
-                .filter(Objects::nonNull)
-                .collect(toMap(Route::getRouteId, identity()));
+    public Route findByRouteId(Integer routeId) {
+        return routeMapBean
+                .getRoutesMap()
+                .getOrDefault(routeId, Route.builder().routeId(routeId).shortName(routeId.toString()).build());
     }
 }

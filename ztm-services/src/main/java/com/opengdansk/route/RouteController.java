@@ -7,15 +7,12 @@ import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 @RequestMapping(produces = APPLICATION_JSON_VALUE)
@@ -32,9 +29,9 @@ public class RouteController {
         return new ResponseEntity<>(response, OK);
     }
 
-    @RequestMapping(value = "route", method = POST)
-    public ResponseEntity getRouteByRouteIds(@RequestBody List<Integer> routeIds) {
-        val response = service.getRouteMapSubset(routeIds);
+    @RequestMapping(value = "route/{routeId}", method = GET)
+    public ResponseEntity getByRouteId(@PathVariable("routeId") Integer routeId) {
+        val response = service.findByRouteId(routeId);
 
         return new ResponseEntity<>(response, OK);
     }
