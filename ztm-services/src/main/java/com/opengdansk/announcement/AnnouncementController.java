@@ -14,14 +14,14 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
-@RequestMapping(produces = APPLICATION_JSON_VALUE, value = "announcement")
+@RequestMapping(produces = APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AnnouncementController {
 
     @NonNull
     private AnnouncementService announcementService;
 
-    @RequestMapping(value = "message", method = GET)
+    @RequestMapping(value = "announcement/all", method = GET)
     public ResponseEntity getMessages() {
         val response = announcementService.getMessagesDistinct();
 
