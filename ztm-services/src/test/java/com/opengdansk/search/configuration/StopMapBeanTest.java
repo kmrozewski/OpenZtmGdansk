@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(MockitoJUnitRunner.class)
 public class StopMapBeanTest {
 
-    private  static final int NUMBER_OF_STOP_NAMES = 1248;
+    private  static final int NUMBER_OF_STOP_NAMES = 1260;
 
     @InjectMocks
     private StopMapBean stopMapBean;
