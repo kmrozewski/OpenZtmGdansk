@@ -10,14 +10,22 @@
                         scrollWheelZoom: true
                     };
 
-                    scope.plotMap = function() {
+                    scope.$watch('collapsibles', function(newValue, oldValue) {
+                        if (newValue.status === true) {
+                            plotMap();
+                        }
+                    }, true);
+
+                    function plotMap() {
+                        console.log('plotMap()');
+
                         var bounds = [StopsMapService.getStopCoordBounds(scope.stopCodes)];
                         scope.markers = StopsMapService.getStopCoordMarkers(scope.stopCodes, scope.stopName);
 
                         leafletData.getMap().then(function(map) {
                             console.log('map', map);
                             map.fitBounds(bounds, {
-                                padding: [20, 20]
+                                padding: [30, 30]
                             });
                             map.invalidateSize(true);
                         });
@@ -27,7 +35,8 @@
                 templateUrl: 'app/components/stops-map/stops-map.html',
                 scope: {
                     stopCodes: '=',
-                    stopName: '='
+                    stopName: '=',
+                    collapsibles: '='
                 }
             };
         })
