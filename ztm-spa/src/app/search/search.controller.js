@@ -14,10 +14,13 @@
         $scope.stops = [];
         $scope.stopCodes = [];
         $scope.stopIds = [];
+        $scope.collapsibles = {
+            status: false
+        };
 
         $http.get('app/search/stops.json').then(function(data) {
-                $scope.stops = data.data;
-            });
+            $scope.stops = data.data;
+        });
 
         $interval(refreshResults, REFRESH_INTERVAL);
 
