@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('ztmSpa', ['ngResource', 'ui.router', 'ui.bootstrap']);
+    .module('ztmSpa', ['ngResource', 'ngAnimate', 'ngSanitize', 'ui.router', 'ui.bootstrap', 'nemLogging', 'ui-leaflet']);
 
 })();

@@ -16,8 +16,8 @@
         $scope.stopIds = [];
 
         $http.get('app/search/stops.json').then(function(data) {
-                $scope.stops = data.data;
-            });
+            $scope.stops = data.data;
+        });
 
         $interval(refreshResults, REFRESH_INTERVAL);
 

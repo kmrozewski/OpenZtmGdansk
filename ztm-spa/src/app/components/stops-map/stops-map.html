@@ -1,0 +1,8 @@
+<uib-accordion ng-if="stopName" close-others="false">
+<div uib-accordion-group class="panel-info" is-open="collapsibles.open" ng-click="plotMap()">
+	<uib-accordion-heading>
+    	<h4>Przystanek: {{stopName}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': collapsibles.open, 'glyphicon-chevron-right': !collapsibles.open}"></i></h4>
+    </uib-accordion-heading>
+    <leaflet ng-if="collapsibles.open" markers="markers" defaults="defaults" height="350"></leaflet>
+</div>
+</uib-accordion>

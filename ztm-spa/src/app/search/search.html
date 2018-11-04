@@ -1,8 +1,4 @@
-<div ng-if="stopName" class="panel panel-info">
-	<div class="panel-heading">
-		<h4>Przystanek: {{stopName}}</h4>
-	</div>
-</div>
+<stops-map stop-name="stopName" stop-codes="stopCodes"></stops-map>
 
 <uib-tabset active="tabId">
 	<uib-tab ng-repeat="stopCode in stopCodes track by $index"  heading="{{stopName + ' ' + stopCode.code}}" ng-click="tabClicked($index)">

@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+        <link rel="stylesheet" href="//unpkg.com/leaflet@0.7.7/dist/leaflet.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
@@ -48,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
+                <div class="collapse navbar-collapse" uib-collapse="navCollapsed">
                     <ul class="nav navbar-nav">
                         <li ui-sref-active="active">
                             <a ui-sref="home">Rozkład jazdy</a>
