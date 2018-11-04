@@ -22,6 +22,7 @@
                 val: {
                     lat: stop.coords.lat,
                     lng: stop.coords.lon,
+                    icon: getIcon(),
                     message: stopName + ' ' + stopCode.code,
                     focus: false,
                     draggable: false
@@ -50,6 +51,17 @@
             });
 
             return markerObject;
+        }
+
+        function getIcon() {
+            return {
+                iconUrl: 'app/components/stops-map/assets/marker-icon.png',
+                iconSize: [25, 41],
+                iconRetinaUrl: 'app/components/stops-map/assets/marker-icon-2x.png',
+                iconRetinaSize: [50, 82],
+                shadowUrl: 'app/components/stops-map/assets/marker-shadow.png',
+                shadowSize: [41, 41]
+            };
         }
     }
 

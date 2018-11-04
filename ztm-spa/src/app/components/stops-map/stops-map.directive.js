@@ -17,13 +17,10 @@
                     }, true);
 
                     function plotMap() {
-                        console.log('plotMap()');
-
                         var bounds = [StopsMapService.getStopCoordBounds(scope.stopCodes)];
                         scope.markers = StopsMapService.getStopCoordMarkers(scope.stopCodes, scope.stopName);
 
                         leafletData.getMap().then(function(map) {
-                            console.log('map', map);
                             map.fitBounds(bounds, {
                                 padding: [30, 30]
                             });
