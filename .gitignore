@@ -1,0 +1,13 @@
+.idea/
+**/.DS_Store
+
+ops-local/wfeservices/wfeservices.jar
+ops-local/wfespa/dist/
+
+ztm-services/target/
+
+ztm-spa/dist/
+ztm-spa/node_modules/
+ztm-spa/bower_components/
+ztm-spa/package-lock.json
+ztm-spa/.tmp
