@@ -17,10 +17,10 @@ public class StopLocalizatorRequest {
     private StopCoords coords;
 
     @Min(0)
-    @Max(1000)
+    @Max(1200)
     private Integer range;
 
     @Min(5)
-    @Max(20)
+    @Max(30)
     private Integer limit;
 }

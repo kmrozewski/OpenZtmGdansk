@@ -3,29 +3,34 @@
 
     angular
         .module('ztmSpa')
-        .directive('stopsMap', function(StopsMapService, leafletData) {
+        .directive('stopsMap', function(StopsMapService) {
             return {
                 link: function(scope) {
-                    scope.defaults = {
-                        scrollWheelZoom: true
-                    };
-
                     scope.$watch('collapsibles', function(newValue, oldValue) {
                         if (newValue.status === true) {
                             plotMap();
                         }
+
+                        // remove map when accordion panel is closed
+                        if (newValue.status === false && scope.map) {
+                            scope.map.remove();
+                        }
                     }, true);
 
-                    function plotMap() {
-                        var bounds = [StopsMapService.getStopCoordBounds(scope.stopCodes)];
-                        scope.markers = StopsMapService.getStopCoordMarkers(scope.stopCodes, scope.stopName);
-
-                        leafletData.getMap().then(function(map) {
-                            map.fitBounds(bounds, {
-                                padding: [30, 30]
-                            });
-                            map.invalidateSize(true);
+                    function initializeMap() {
+                        scope.map = L.map('search-map');
+                        var osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
                         });
+                        scope.map.addLayer(osm);
+                    }
+
+                    function plotMap() {
+                        initializeMap();
+                        var markersGroup = L.featureGroup();
+                        StopsMapService.addSearchStopCoordMarkersToFeatureGroup(scope.stopCodes, scope.stopName, markersGroup);
+                        scope.map.addLayer(markersGroup);
+                        scope.map.fitBounds(markersGroup.getBounds().pad(0.05));
                     };
                 },
                 restrict: 'E',
