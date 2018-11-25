@@ -19,9 +19,9 @@
 
                     function initializeMap() {
                         scope.map = L.map('search-map');
-                        var osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                            attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-                        });
+                        var osm = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        })
                         scope.map.addLayer(osm);
                     }
 

@@ -6,13 +6,13 @@
     /** @ngInject */
     function NearestController($scope, $interval, SearchService, StopsMapService, REFRESH_INTERVAL) {
         $scope.selected = {
-        	limit: 15,
-        	range: 500
+            limit: 15,
+            range: 500
         };
 
         $scope.collapsibles = {
-        	settings: false,
-        	map: true
+            settings: false,
+            map: true
         };
 
         $scope.options = {
@@ -33,10 +33,10 @@
         };
 
         $scope.update = function() {
-        	$scope.map.remove();
-        	$scope.elemReady();
-        	$scope.collapsibles.settings = false;
-        	$scope.collapsibles.map = true;
+            $scope.map.remove();
+            $scope.elemReady();
+            $scope.collapsibles.settings = false;
+            $scope.collapsibles.map = true;
         };
 
         $scope.lastUpdate = "";
@@ -48,14 +48,16 @@
 
         $scope.elemReady = function() {
             $scope.map = L.map('map');
-            var osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-            });
+            var osm = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            })
             $scope.map.addLayer(osm);
             $scope.map.locate({
                 setView: true
             });
+
             $scope.map.on('locationfound', locationFound);
+            $scope.map.on('locationerror', locationError);
         }
         $interval(refreshResults, REFRESH_INTERVAL);
         $scope.tabClicked = function(index) {
@@ -78,6 +80,10 @@
                 $scope.stopIds = getStopIds();
                 plotNearestStops();
             });
+        }
+
+        function locationError(event) {
+            console.log('locaiton error', event)
         }
 
         function plotNearestStops() {
