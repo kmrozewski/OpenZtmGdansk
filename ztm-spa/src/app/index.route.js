@@ -22,6 +22,11 @@
           'stopName': null
         }
       })
+      .state('nearest', {
+        url: '/nearest',
+        templateUrl: 'app/nearest/nearest.html',
+        controller: 'NearestController'
+      })
       .state('about', {
         url: '/about',
         templateUrl: 'app/about/about.html'

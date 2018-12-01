@@ -7,10 +7,13 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class Stop {
+@NoArgsConstructor
+public class StopLocalizatorResult {
 
     private Integer id;
+    private String name;
+    private String code;
     private StopCoords coords;
+    private Integer distance;
 }

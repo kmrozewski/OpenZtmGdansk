@@ -6,10 +6,9 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, $qProvider) {
+  function config($logProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
-    $qProvider.errorOnUnhandledRejections(false);
   }
 
 })();

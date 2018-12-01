@@ -3,6 +3,6 @@
 	<uib-accordion-heading>
     	<h4>Przystanek: {{stopName}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': collapsibles.status, 'glyphicon-chevron-right': !collapsibles.status}"></i></h4>
     </uib-accordion-heading>
-    <leaflet ng-if="collapsibles.status" markers="markers" defaults="defaults" height="350"></leaflet>
+    <div id="search-map"></div>
 </div>
 </uib-accordion>
