@@ -3,8 +3,7 @@ The application displays timetables for all public transportation stops and vehi
 
 Thanks to the site https://gdansk.pl/otwarte-dane and Tristar for the public API this application is using for displaying the current timetables.
 
-**Currently the app is deployed and accessible for everyone and for free at:**
-https://mniejstresudlawero.pl
+**Currently the app is deployed and accessible for everyone and for free at** https://mniejstresudlawero.pl
 
 # Local (dev) deployment
 In `ops-local` directory, run the `start-local-env.sh` script
@@ -19,12 +18,12 @@ This step is optional since domain provider usually have it’s own DNS that you
 
 ### Google Cloud (Network services -> Cloud DNS)
 1. Create zone.
-*Zone name*: `YOUR_DOMAIN_NAME-zone`
-*DNS name*: `YOUR_DOMAIN_NAME.pl`
+* *Zone name*: `YOUR_DOMAIN_NAME-zone`
+* *DNS name*: `YOUR_DOMAIN_NAME.pl`
 2. Add record set - this will add the possibility to access the page via `https://www.YOUR_DOMAIN_NAME.pl` instead of `https://YOUR_DOMAIN_NAME.pl`.
-*DNS Name*: `www.` (there should be `www.YOUR_DOMAIN_NAME.pl`)
-*Resoruce Record Type*: `CNAME`
-*Canonical name*: `YOUR_DOMAIN_NAME.pl`
+* *DNS Name*: `www.` (there should be `www.YOUR_DOMAIN_NAME.pl`)
+* *Resoruce Record Type*: `CNAME`
+* *Canonical name*: `YOUR_DOMAIN_NAME.pl`
 
 ### AWS Route53 (optional)
 The steps mentioned in the Google Cloud DNS are similar.
@@ -181,9 +180,10 @@ server {
 2. Re-issue the certificate for next 90 days.
 ```bash
 sudo certbot renew
-``` 
-	* You can add `--dry-run` to test the renewal process. This would re-issue the certificate but it won’t save it on the disk.
-1. Restart nginx.
+```
+
+* Add `--dry-run` to test the renewal process. This would re-issue the certificate but it won’t save it on the disk.
+3. Restart nginx.
 ```bash
 sudo systemctl reload nginx
 ```
