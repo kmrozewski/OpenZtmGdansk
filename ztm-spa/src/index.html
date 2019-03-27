@@ -30,7 +30,7 @@
         <!--[if lt IE 10]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <nav class="navbar navbar-default" role="navigation">
+        <nav class="navbar navbar-default" style="margin-bottom: 5px;" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
@@ -41,7 +41,7 @@
                     </button>
                     <a class="navbar-brand" ui-sref="home"><span class="fas fa-bus"></span></a>
                     <a class="navbar-brand" ui-sref="nearest"><span class="fas fa-location-arrow"></span></a>
-                    <div class="navbar-form navbar-left" ng-controller="SearchController">
+                    <div class="navbar-form navbar-left navbar-form-fix" style="margin-bottom: 0px; margin-left: 0px; margin-right: 0px; border-top: none; border-bottom: none;" ng-controller="SearchController">
                         <input type="search"
                         ng-model="asyncSelected"
                         class="form-control"
