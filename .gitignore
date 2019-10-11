@@ -11,3 +11,6 @@ ztm-spa/node_modules/
 ztm-spa/bower_components/
 ztm-spa/package-lock.json
 ztm-spa/.tmp
+
+frontend/node_modules
+frontend/build
