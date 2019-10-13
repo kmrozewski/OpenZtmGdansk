@@ -1,6 +1,5 @@
 import React from 'react'
-import axios from 'axios';
-import {API} from '../global/const'
+import {getDelaysAggregated} from '../global/api'
 import Bus from "../bus/Bus"
 import styles from './Delay.css'
 
@@ -16,23 +15,12 @@ export default class Delay extends React.Component {
     }
 
     async componentDidMount() {
-        try {
-            const result = await axios.get(API + "estimate/1397")
-
-            this.setState({
-                isLoading: false,
-                delays   : result.data.delay
-            })
-        } catch (error) {
-            this.setState({
-                isLoading: false,
-                delays   : []
-            })
-        }
+        console.log('did mount', this.props)
+        const result = await getDelaysAggregated(this.props.stopIds)
+        this.setState(result);
 
         console.log(this.state);
     }
-
 
     render() {
         if (this.state.delays.length > 0) {
