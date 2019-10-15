@@ -1,39 +1,23 @@
 import React from 'react'
+import {connect} from "react-redux";
 import {Accordion, Card, Button, Badge} from 'react-bootstrap'
-import {getAnnouncements} from '../global/api'
 
-export default class Announcements extends React.Component {
-
-	constructor() {
-		super()
-
-		this.state = {
-			announcements: []
-		}
-	}
-
-	async componentDidMount() {
-		const result = await getAnnouncements()
-
-		this.setState({
-			isLoading: result.isLoading,
-			announcements: result.announcements
-		})
-	}
-
+export class Announcements extends React.Component {
 	render() {
 		return (
-			<Accordion defaultActivateKey="0">
+			<Accordion>
 				<Card>
 				    <Card.Header>
 				      <Accordion.Toggle as={Button} variant="link" eventKey="0">
-						<Badge variant="secondary">{this.state.announcements.length}</Badge> Komunikaty
+						<Badge variant="secondary">{this.props.announcements.length}</Badge> Komunikaty
 						<span className="sr-only">unread messages</span>
 				      </Accordion.Toggle>
 				    </Card.Header>
 				    <Accordion.Collapse eventKey="0">
 				      <Card.Body>
-				      	{this.state.announcements.map((announcement, index) => <Card.Text key={index}>{announcement}</Card.Text>)}
+				      	{this.props.announcements.length === 0
+				      		? <Card.Text>Brak komunikatów</Card.Text>
+				      		: this.props.announcements.map((announcement, index) => <Card.Text key={index}>{announcement}</Card.Text>)}
 				      </Card.Body>
 				    </Accordion.Collapse>
 				</Card>
@@ -41,3 +25,11 @@ export default class Announcements extends React.Component {
 		)
 	}
 }
+
+function mapStateToProps(state) {
+    return {
+        announcements: state.announcements
+    }
+}
+
+export default connect(mapStateToProps)(Announcements)

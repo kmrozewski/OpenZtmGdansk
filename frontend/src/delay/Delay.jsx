@@ -15,7 +15,6 @@ export default class Delay extends React.Component {
     }
 
     async componentDidMount() {
-        console.log('did mount', this.props)
         const result = await getDelaysAggregated(this.props.stopIds)
         this.setState(result);
 

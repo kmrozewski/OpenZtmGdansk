@@ -36,15 +36,17 @@ export const getDelaysAggregated = async (stopIds) => {
 export const getAnnouncements = async () => {
     try {
         const result = await axios.get(API + 'announcement/all')
-
-        return {
-            isLoading: false,
-            announcements: result.data
-        }
+        return result.data
     } catch (error) {
-        return {
-            isLoading: false,
-            announcements: []
-        }
+        return []
+    }
+}
+
+export const getRouteById = async (routeId) => {
+    try {
+        const result = await axios.get(API + 'route/' + routeId)
+        return result.data
+    } catch (error) {
+        return {}
     }
 }
