@@ -1,6 +1,7 @@
 package com.opengdansk.search.service;
 
 import com.opengdansk.search.conguration.StopMapBean;
+import com.opengdansk.search.model.Stop;
 import com.opengdansk.search.model.StopCodeAgg;
 import com.opengdansk.search.model.StopNameAgg;
 import lombok.NonNull;
@@ -25,6 +26,19 @@ public class SearchService {
 
     public Map<String, List<StopCodeAgg>> getAllStops() {
         return stopMapBean.getStopsMap();
+    }
+
+    public Map<String, List<Integer>> getAllStopIds() {
+        return stopMapBean
+                .getStopsMap()
+                .entrySet()
+                .stream()
+                .collect(Collectors.toMap(Map.Entry::getKey,
+                        entry -> entry
+                                .getValue()
+                                .stream()
+                                .flatMap(stopCodeAgg -> stopCodeAgg.getStops().stream().map(Stop::getId))
+                                .collect(Collectors.toList())));
     }
 
     public StopNameAgg getStopByName(String stopName) {

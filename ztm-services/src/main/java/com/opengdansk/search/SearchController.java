@@ -39,6 +39,13 @@ public class SearchController {
         return new ResponseEntity<>(response, OK);
     }
 
+    @RequestMapping(value = "ids", method = GET)
+    public ResponseEntity getAllStopWithIds() {
+        val response = searchService.getAllStopIds();
+
+        return new ResponseEntity<>(response, OK);
+    }
+
     @RequestMapping(value = "{stopName}", method = GET)
     public ResponseEntity getStopsByName(@PathVariable("stopName") String stopName) {
         val response = searchService.getStopByName(stopName);

@@ -5,7 +5,7 @@ import styles from './Delay.css'
 
 export default class Delay extends React.Component {
 
-    constructor() {
+    constructor(props) {
         super();
 
         this.state = {
@@ -15,10 +15,9 @@ export default class Delay extends React.Component {
     }
 
     async componentDidMount() {
+        console.log('mounted', this.props.stopIds)
         const result = await getDelaysAggregated(this.props.stopIds)
         this.setState(result);
-
-        console.log(this.state);
     }
 
     render() {

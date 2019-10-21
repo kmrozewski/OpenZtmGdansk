@@ -10,6 +10,7 @@ export default class Header extends React.Component {
                 <Nav className="mr-auto">
                     <Nav.Link as={Link} to="/">Timetables</Nav.Link>
                     <Nav.Link as={Link} to="/search">Search</Nav.Link>
+                    <Nav.Link as={Link} to="/air">Air quality</Nav.Link>
                 </Nav>
             </Navbar>
         )
