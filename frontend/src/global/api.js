@@ -10,6 +10,7 @@ export const getDelays = async (stopId) => {
             delays   : result.data.delay
         }
     } catch (error) {
+        console.log('Error', error)
         return {
             isLoading: false,
             delays   : []
@@ -26,6 +27,7 @@ export const getDelaysAggregated = async (stopIds) => {
             delays: result.data.delay
         }
     } catch (error) {
+        console.log('Error', error)
         return {
             isLoading: false,
             delays: []
@@ -38,6 +40,7 @@ export const getAnnouncements = async () => {
         const result = await axios.get(API + 'announcement/all')
         return result.data
     } catch (error) {
+        console.log('Error', error)
         return []
     }
 }
@@ -47,6 +50,20 @@ export const getRouteById = async (routeId) => {
         const result = await axios.get(API + 'route/' + routeId)
         return result.data
     } catch (error) {
+        console.log('Error', error)
         return {}
+    }
+}
+
+export const getStopByName = async (stopName) => {
+    try {
+        const result = await axios.get(API + 'search/' + stopName)
+        return result.data
+    } catch (error) {
+        console.log('Error', error)
+        return {
+            name: stopName,
+            codes: []
+        }
     }
 }

@@ -5,6 +5,7 @@ import Delay from "../delay/Delay"
 import Search from "../search/Search"
 import Error404 from "./Error404"
 import Air from './Air'
+import Stop from '../stop/Stop'
 
 export default class AppRouter extends React.Component {
     render() {
@@ -17,7 +18,9 @@ export default class AppRouter extends React.Component {
                                <Delay stopIds={[parseInt(match.params.stopId, 10)]}/>
                            )}/>
                 <Route path="/air" component={Air}/>
-                <Redirect path="/" exact to ="/timetable"/>
+                <Route path="/stop/:stopName" render={({match}) => (<Stop stopName={match.params.stopName}/>) }/>
+                <Redirect path="/" exact to="/timetable"/>
+                <Route path="/404" exact component={Error404}/>
                 <Route component={Error404}/>
             </Switch>
         )
