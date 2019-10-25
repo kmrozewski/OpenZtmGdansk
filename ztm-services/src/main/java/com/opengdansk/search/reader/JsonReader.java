@@ -1,5 +1,6 @@
 package com.opengdansk.search.reader;
 
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class JsonReader {
@@ -33,6 +35,20 @@ public class JsonReader {
             return new ObjectMapper().readValue(
                     readFixtureToString(className, fileName),
                     objectMapper.getTypeFactory().constructCollectionType(collectionClass, outputClass));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static <T> Map<String, T> parseFixtureToMap(Class className, Class<T> outputClass, String fileName) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            JavaType stringType = objectMapper.getTypeFactory().constructType(String.class);
+            JavaType customType = objectMapper.getTypeFactory().constructType(outputClass);
+            JavaType mapType = objectMapper.getTypeFactory().constructMapType(Map.class, stringType, customType);
+
+            return new ObjectMapper().readValue(readFixtureToString(className, fileName), mapType);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
