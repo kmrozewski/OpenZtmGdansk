@@ -12,14 +12,9 @@ class Stop extends React.Component {
     async componentDidMount() {
         let stop = await getStopByName(this.props.stopName)
         this.props.onStopSearched(stop)
-        console.log('stop', this.props.stop)
     }
 
     isStopNameValid = () => stopNames.includes(this.props.stopName)
-
-    getStops() {
-        return this.props.stop.codes.flatMap(s => s.stops)
-    }
 
     renderStopCodes() {
         return (
@@ -41,16 +36,11 @@ class Stop extends React.Component {
 	}
 
     render() {
-        console.log('render')
         if (!this.isStopNameValid()) {
             return <Redirect push to="/404"/>
         }
 
         if (this.props.stop.codes) {
-            console.log('stop', this.props.stop);
-            console.log('stops', this.getStops());
-
-
             return this.renderStopCodes()
         }
 

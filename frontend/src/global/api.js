@@ -67,3 +67,17 @@ export const getStopByName = async (stopName) => {
         }
     }
 }
+
+const getRequestTripId = (routeId, tripId) => 'R' + routeId + 'T' + tripId
+
+export const getTripById = async (routeId, tripId) => {
+    try {
+        const requestTripId = getRequestTripId(routeId, tripId)
+        const result = await axios.get(API + 'trip/' + requestTripId)
+
+        return result.data
+    } catch (error) {
+        console.log('Error', error)
+        return {}
+    }
+}

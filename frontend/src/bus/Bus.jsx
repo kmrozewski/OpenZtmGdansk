@@ -1,6 +1,6 @@
 import React from 'react'
 import {Card} from "react-bootstrap"
-import {getRouteById} from '../global/api'
+import {getRouteById, getTripById} from '../global/api'
 import {formatSeconds} from './util'
 
 export default class Bus extends React.Component {
@@ -10,32 +10,32 @@ export default class Bus extends React.Component {
 
         this.state = {
             routeNumber: props.delay.headsign,
-            routeName: ""
+            trip       : {}
         }
     }
 
     async componentDidMount() {
         const route = await getRouteById(this.props.delay.routeId)
-        console.log('route', route)
+        const trip = await getTripById(this.props.delay.routeId, this.props.delay.tripId)
 
         this.setState({
             routeNumber: route.routeShortName,
-            routeName: route.routeLongName
+            trip       : trip
         })
     }
 
-    parseBusRoute() {
-        if (this.state.routeNumber === this.state.routeName) {
-            return this.state.routeNumber
+    renderHeader() {
+        if (this.state.trip.tripHeadsign) {
+            return this.state.routeNumber + " " + this.state.trip.tripHeadsign
         }
-
-        return this.state.routeNumber + " " + this.state.routeName
     }
 
     render() {
         return (
             <Card bg={this.props.delay.delayInSeconds < 0 ? "danger" : "success"} text="white" style={{marginTop: '1rem'}}>
-                <Card.Header>{this.parseBusRoute()}</Card.Header>
+                <Card.Header>
+                    {this.renderHeader()}
+                </Card.Header>
                 <Card.Body>
                     <Card.Text>{this.props.delay.delayInSeconds < 0 ? "Opóźniony o" : "Przyspieszony o"} {formatSeconds(this.props.delay.delayInSeconds)}</Card.Text>
                     <Card.Text>Czas estymowany: {this.props.delay.estimatedTime}</Card.Text>
