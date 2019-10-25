@@ -1,35 +1,76 @@
 import React from 'react'
 import {Redirect} from 'react-router'
 import {getStopByName} from '../global/api'
-import {stops as stopNames} from '../global/stops'
+import {stops as stopNames} from './stops'
+import * as StopActions from "./actions"
+import {connect} from "react-redux"
+import Delay from "../delay/Delay"
+import {Tab, Tabs} from "react-bootstrap"
 
-export default class Stop extends React.Component {
+class Stop extends React.Component {
 
-	constructor(props) {
-		super()
+    async componentDidMount() {
+        let stop = await getStopByName(this.props.stopName)
+        this.props.onStopSearched(stop)
+        console.log('stop', this.props.stop)
+    }
 
-		this.state = {
-			stops: {
-				name: props.stopName,
-				codes: []
-			}
-		}
-	}
+    isStopNameValid = () => stopNames.includes(this.props.stopName)
 
-	async componentDidMount() {
-		let result = await getStopByName(this.props.stopName)
-		this.setState({stops: result})
-	}
+    getStops() {
+        return this.props.stop.codes.flatMap(s => s.stops)
+    }
 
-	isStopNameValid = () => stopNames.includes(this.props.stopName)
+    renderStopCodes() {
+        return (
+        	<Tabs>
+				{this.props.stop.codes.map(this.renderStopCode)}
+			</Tabs>
+		)
+    }
 
-	render() {
-		if (!this.isStopNameValid()) {
-			return <Redirect push to="/404"/>
-		}
+    renderStopCode = (stopCode) => {
+		let title = this.props.stopName + ' ' + stopCode.code
+		let stopIds = stopCode.stops.map(s => s.id)
 
 		return (
-			<h3>Henlo {this.props.stopName}</h3>
+			<Tab key={title} eventKey={title} title={title}>
+				<Delay stopIds={stopIds}/>
+			</Tab>
 		)
 	}
+
+    render() {
+        console.log('render')
+        if (!this.isStopNameValid()) {
+            return <Redirect push to="/404"/>
+        }
+
+        if (this.props.stop.codes) {
+            console.log('stop', this.props.stop);
+            console.log('stops', this.getStops());
+
+
+            return this.renderStopCodes()
+        }
+
+        return (
+            <h3>Przystanek {this.props.stopName}</h3>
+        )
+    }
 }
+
+function mapStateToProps(state, ownProps) {
+    return {
+        ownProps,
+        stop: state.stop
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        onStopSearched: (stop) => dispatch(StopActions.stopsRefreshed(stop))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Stop)

@@ -5,7 +5,7 @@ import styles from './Delay.css'
 
 export default class Delay extends React.Component {
 
-    constructor(props) {
+    constructor() {
         super();
 
         this.state = {
@@ -15,7 +15,6 @@ export default class Delay extends React.Component {
     }
 
     async componentDidMount() {
-        console.log('mounted', this.props.stopIds)
         const result = await getDelaysAggregated(this.props.stopIds)
         this.setState(result);
     }
@@ -25,7 +24,7 @@ export default class Delay extends React.Component {
             return this.state.delays.map((delay, index) => <Bus
                 key={index}
                 className={styles.top10}
-                delay={delay} />)
+                delay={delay}/>)
         }
 
         return (

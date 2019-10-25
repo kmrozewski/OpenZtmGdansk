@@ -2,7 +2,7 @@ import React from 'react'
 import 'react-bootstrap-typeahead/css/Typeahead.css'
 import {Typeahead} from 'react-bootstrap-typeahead'
 import {Redirect} from 'react-router'
-import {stops} from '../global/stops'
+import {stops} from '../stop/stops'
 
 export default class Search extends React.Component {
 
@@ -24,7 +24,7 @@ export default class Search extends React.Component {
 
     render() {
     	if (this.state.redirect) {
-    		return <Redirect push to={"/stop/" + this.state.stopName} />	
+    		return <Redirect push to={"/stop/" + this.state.stopName} />
 		}
 
     	return (
