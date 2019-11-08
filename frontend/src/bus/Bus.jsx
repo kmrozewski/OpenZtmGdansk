@@ -24,6 +24,19 @@ export default class Bus extends React.Component {
         })
     }
 
+    async componentDidUpdate(prevProps) {
+        
+        // if (prevProps !== this.props) {
+        //     const route = await getRouteById(this.props.delay.routeId)
+        //     const trip = await getTripById(this.props.delay.routeId, this.props.delay.tripId)
+        //
+        //     this.setState({
+        //         routeNumber: route.routeShortName,
+        //         trip       : trip
+        //     })
+        // }
+    }
+
     renderHeader() {
         if (this.state.trip.tripHeadsign) {
             return this.state.routeNumber + " " + this.state.trip.tripHeadsign

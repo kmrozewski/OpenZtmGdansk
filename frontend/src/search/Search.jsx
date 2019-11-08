@@ -2,7 +2,9 @@ import React from 'react'
 import 'react-bootstrap-typeahead/css/Typeahead.css'
 import {Typeahead} from 'react-bootstrap-typeahead'
 import {Redirect} from 'react-router'
-import {stops} from '../stop/stops'
+import {stops as stopNames} from '../stop/stops'
+
+const isStopNameValid = (stopName) => stopNames.includes(stopName)
 
 export default class Search extends React.Component {
 
@@ -33,7 +35,7 @@ export default class Search extends React.Component {
 	    			caseSensitive={false}
 	    			ignoreDiacritics={true}
 	    			minLength={3}
-	    			options={stops}
+	    			options={stopNames}
 	    			placeholder="Wyszukaj przystanek..."
 	    			onChange={this.stopSearched}
 	    		/>
