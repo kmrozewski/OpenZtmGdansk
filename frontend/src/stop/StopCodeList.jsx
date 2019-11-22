@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from "react-redux"
 import {getStopByName} from "../global/api"
 import * as StopActions from "./actions"
-import {Link, NavLink} from "react-router-dom"
+import {Link} from "react-router-dom"
 
 class StopCodeList extends React.Component {
 
@@ -10,8 +10,6 @@ class StopCodeList extends React.Component {
         let stop = await getStopByName(this.props.stopName)
         this.props.onStopSearched(stop)
     }
-
-    getPath = (code) => '/stop/' + this.props.stopName + '/' + code + '/'
 
     renderStopCodes = (code, index) => {
         return (
@@ -38,6 +36,8 @@ class StopCodeList extends React.Component {
 
         return (<h3>{this.props.title}</h3>)
     }
+
+    getPath = (code) => '/stop/' + this.props.stopName + '/' + code + '/'
 }
 
 function mapStateToProps(state, ownProps) {
