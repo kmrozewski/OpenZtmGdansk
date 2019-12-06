@@ -3,6 +3,7 @@ import {connect} from "react-redux"
 import {getStopByName} from "../global/api"
 import * as StopActions from "./actions"
 import {Link} from "react-router-dom"
+import {Accordion, Card, Button} from "react-bootstrap"
 
 class StopCodeList extends React.Component {
 
@@ -24,13 +25,22 @@ class StopCodeList extends React.Component {
     render() {
         if (this.props.stop.codes) {
             return (
-                <React.Fragment>
-                    <h3>{this.props.title}</h3>
-                    Lista przystanków:
-                    <ul>
-                        {this.props.stop.codes.map(this.renderStopCodes)}
-                    </ul>
-                </React.Fragment>
+                <Accordion>
+                    <Card>
+                        <Card.Header>
+                            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                Lista przystanków
+                            </Accordion.Toggle>
+                        </Card.Header>
+                        <Accordion.Collapse eventKey="0">
+                            <Card.Body>
+                                <ul>
+                                    {this.props.stop.codes.map(this.renderStopCodes)}
+                                </ul>
+                            </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                </Accordion>
             )
         }
 
