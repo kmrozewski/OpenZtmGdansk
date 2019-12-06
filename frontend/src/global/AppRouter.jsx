@@ -7,6 +7,7 @@ import Error404 from "./Error404"
 import Air from './Air'
 import StopChild from "../stop/StopChild"
 import StopCodeList from "../stop/StopCodeList"
+import Nearest from "../nearest/Nearest"
 
 export default class AppRouter extends React.Component {
     render() {
@@ -21,6 +22,7 @@ export default class AppRouter extends React.Component {
                 <Route path="/air" component={Air}/>
                 <Route path="/stop/:stopName" exact render={({match}) => <StopCodeList stopName={match.params.stopName} title={match.params.stopName} /> }/>
                 <Route path="/stop/:stopName/:stopCode" exact render={({match}) => <StopChild stopName={match.params.stopName} stopCode={match.params.stopCode}/> }/>
+                <Route path="/nearest" exact component={Nearest}/>
                 <Redirect path="/" exact to="/timetable"/>
                 <Route path="/404" exact component={Error404}/>
                 <Route component={Error404}/>
