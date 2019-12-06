@@ -18,7 +18,6 @@ class StopChild extends React.Component {
     }
 
     async componentDidMount() {
-        console.log('[StopChild] componentDidMount', '\nprops', this.props, '\nstate', this.state)
         if (this.props.stop.codes && this.props.stop.codes.length > 0) {
             await this.getDelays()
         }
@@ -26,7 +25,6 @@ class StopChild extends React.Component {
 
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log('[StopChild] componentDidMount', '\nprops', this.props, '\nstate', this.state)
         if (this.props.stopCode !== prevProps.stopCode || this.state.stopIds.length === 0) {
             await this.getDelays()
         }
@@ -34,7 +32,6 @@ class StopChild extends React.Component {
 
     renderDelay() {
         if (this.state.stopIds.length > 0) {
-            console.log('[StopChild] delay will be rendered')
             return (<Delay stopIds={this.state.stopIds} stopCode={this.props.stopCode} delays={this.state.delays}/>)
         }
     }
@@ -54,7 +51,6 @@ class StopChild extends React.Component {
     async getDelays() {
         const stopIds = this.getStopIds()
         const result = await getDelaysAggregated(stopIds)
-        console.log('For stopIds', stopIds, 'Got delays ', result)
 
         this.setState({
             ...this.state,

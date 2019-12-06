@@ -21,16 +21,9 @@ export default class Estimate extends React.Component {
     }
 
     async componentDidMount() {
-        const delayMap = await stopTabs.map(this.mapStop)
-
+        const delayMap = await Promise.all(stopTabs.map(this.mapStop))
 		this.setState({delayMap})
-
-		console.log('[Estimate] did mount', '\nprops', this.props, '\nstate', this.state)
     }
-
-    async componentDidUpdate() {
-		console.log('[Estimate] did update', '\nprops', this.props, '\nstate', this.state)
-	}
 
     render() {
         return (
@@ -41,12 +34,10 @@ export default class Estimate extends React.Component {
     }
 
 	renderTab(stop) {
-		console.log('[Estimate] render', '\nprops', this.props, '\nstate', this.state)
-
-    	if (this.state.delayMap) {
+    	if (this.state.delayMap[stop.key]) {
 			return (
 				<Tab key={stop.key} eventKey={stop.key} title={stop.title}>
-					<Delay stopIds={stop.stopIds} delays={this.state.delayMap[stop.key]}/>
+					<Delay stopIds={stop.stopIds} delays={this.state.delayMap[stop.key].delays}/>
 				</Tab>
 			)
 		}
@@ -66,7 +57,6 @@ export default class Estimate extends React.Component {
 	}
 
 	getDelays = async (stopIds) => {
-		console.log('[Estimate] getDelays')
 		const result = await getDelaysAggregated(stopIds)
 
 		return result.delays
