@@ -4,6 +4,7 @@ import {Accordion, Button, Card} from "react-bootstrap";
 import Slider from "rc-slider";
 import 'rc-slider/assets/index.css';
 import * as NearestParamsActions from "./actions"
+import * as SpinnerActions from "../spinner/actions"
 
 const rangeMarks = {
     0: "0m",
@@ -33,6 +34,9 @@ const limitMarks = {
 class NearestParams extends React.Component {
 
     handleStopRangeChange = (range) => {
+        console.log('[NearestParams] updated range', range)
+        // this.props.onRefreshStarted()
+
         this.props.onNearestParamsChanged({
             range: range,
             limit: this.props.limit
@@ -40,6 +44,9 @@ class NearestParams extends React.Component {
     }
 
     handleStopLimitChange = (limit) => {
+        // this.props.onRefreshStarted()
+        console.log('[NearestParams] updated limit', limit)
+
         this.props.onNearestParamsChanged({
             range: this.props.range,
             limit: limit
@@ -70,6 +77,7 @@ class NearestParams extends React.Component {
     }
 
     render() {
+        console.log('[NearestParams] isLoading', this.props.isLoading)
         return (
             <Accordion>
                 <Card>
@@ -94,13 +102,16 @@ class NearestParams extends React.Component {
 function mapStateToProps(state) {
     return {
         range: state.nearestParams.range,
-        limit: state.nearestParams.limit
+        limit: state.nearestParams.limit,
+        isLoading: state.isLoading
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onNearestParamsChanged: (nearestParams) => dispatch(NearestParamsActions.paramsRefreshed(nearestParams))
+        onNearestParamsChanged: (nearestParams) => dispatch(NearestParamsActions.paramsRefreshed(nearestParams)),
+        onRefreshStarted: () => dispatch(SpinnerActions.refreshStarted()),
+        onRefreshStopped: () => dispatch(SpinnerActions.refreshStopped())
     }
 }
 
