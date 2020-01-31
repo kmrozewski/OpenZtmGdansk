@@ -10,6 +10,6 @@ export function nearestParamsReducer(nearestParams = defaultNearestParams, actio
         case NearestParamsActionTypes.paramsRefreshed:
             return action.nearestParams
         default:
-            return defaultNearestParams
+            return nearestParams
     }
 }
