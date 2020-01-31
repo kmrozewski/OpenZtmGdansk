@@ -81,3 +81,22 @@ export const getTripById = async (routeId, tripId) => {
         return {}
     }
 }
+
+export const getNearestStops = async (lat, lon, range, limit) => {
+    try {
+        const request = {
+            "coords": {
+                "lat": lat,
+                "lon": lon
+            },
+            "range": range,
+            "limit": limit
+        }
+        const response = await axios.post(API + 'search/nearest', request)
+
+        return response.data
+    } catch (error) {
+        console.log('Error', error)
+        return {}
+    }
+}
