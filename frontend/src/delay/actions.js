@@ -1,6 +1,6 @@
 export const ActionTypes = {
-    refreshStarted: 'LeafletMapRefreshStartedAction',
-    refreshStopped: 'LeafletMapRefreshStoppedAction'
+    refreshStarted: 'EstimateRefreshStartedAction',
+    refreshStopped: 'EstimateRefreshStoppedAction'
 }
 
 export function refreshStarted() {

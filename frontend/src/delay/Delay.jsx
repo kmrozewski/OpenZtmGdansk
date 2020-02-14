@@ -2,7 +2,8 @@ import React from 'react'
 import styles from './Delay.css'
 import Bus from "../bus/Bus"
 
-export default class Delay extends React.PureComponent {
+//TODO introduce Spinner for every usage of Delay component
+export default class Delay extends React.Component {
 
     renderBus = (delay, index) => <Bus key={index} className={styles.top10} delay={delay}/>
 

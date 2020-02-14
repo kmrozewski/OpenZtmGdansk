@@ -120,7 +120,7 @@ function mapStateToProps(state) {
     return {
         range: state.nearestParams.range,
         limit: state.nearestParams.limit,
-        isLoading: state.isLoading
+        isLoading: state.loading.isLoadingMap
     }
 }
 
