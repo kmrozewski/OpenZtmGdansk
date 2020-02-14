@@ -4,7 +4,8 @@ import {Typeahead} from 'react-bootstrap-typeahead'
 import {Redirect} from 'react-router'
 import {stops as stopNames} from '../stop/stops'
 
-const isStopNameValid = (stopName) => stopNames.includes(stopName)
+
+const isStopNameValid = (stopName) => stopNames.includes(stopName[0])
 
 export default class Search extends React.Component {
 
@@ -18,10 +19,12 @@ export default class Search extends React.Component {
 	}
 
 	stopSearched = (selected) => {
-		this.setState({
-			stopName: selected,
-			redirect: true
-		})
+		if (isStopNameValid(selected)) {
+			this.setState({
+				stopName: selected,
+				redirect: true
+			})
+		}
 	}
 
     render() {
