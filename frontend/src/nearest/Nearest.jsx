@@ -55,7 +55,7 @@ class Nearest extends React.Component {
     }
 
     findNearestStops = async () => {
-        // console.log('[Nearest] update props', this.props.range, this.props.limit)
+        console.log('[Nearest] update props', this.props.range, this.props.limit)
         if (this.state.position.lat && this.state.position.lng) {
             this.props.onRefreshStarted()
 
