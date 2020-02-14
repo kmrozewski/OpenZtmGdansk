@@ -78,7 +78,7 @@ class Nearest extends React.Component {
         }
     }
 
-    renderMap() {
+    renderMap = () => {
         return (
             <Map center={position} zoom={11} maxZoom={18} onLocationFound={this.handleLocationUpdate}>
                 <TileLayer

@@ -30,7 +30,7 @@ class StopChild extends React.Component {
         }
     }
 
-    renderDelay() {
+    renderDelay = () => {
         if (this.state.stopIds.length > 0) {
             return (<Delay stopIds={this.state.stopIds} stopCode={this.props.stopCode} delays={this.state.delays}/>)
         }
@@ -38,17 +38,17 @@ class StopChild extends React.Component {
 
     render() {
         return (
-            <React.Fragment>
+            <>
                 <StopCodeList stopName={this.props.stopName} title={this.props.stopName + ' ' + this.props.stopCode}/>
                 {this.renderDelay()}
-            </React.Fragment>
+            </>
         )
     }
 
     findStopCode = () => this.props.stop.codes.filter(c => c.code === this.props.stopCode)
     getStopIds = () => this.findStopCode()[0].stops.map(s => s.id)
 
-    async getDelays() {
+    getDelays = async () => {
         const stopIds = this.getStopIds()
         const result = await getDelaysAggregated(stopIds)
 

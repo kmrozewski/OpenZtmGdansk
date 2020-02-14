@@ -36,7 +36,7 @@ export default class Bus extends React.Component {
         }
     }
 
-    renderHeader() {
+    renderHeader = () => {
         if (this.state.trip.tripHeadsign) {
             return this.state.routeNumber + " " + this.state.trip.tripHeadsign
         }

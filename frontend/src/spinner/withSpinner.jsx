@@ -1,5 +1,3 @@
-//TODO can be done with HOC
-//https://www.robinwieruch.de/conditional-rendering-react#conditional-rendering-with-hoc
 import React from "react";
 
 const style = {

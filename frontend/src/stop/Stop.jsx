@@ -6,6 +6,7 @@ import * as StopActions from "./actions"
 import {connect} from "react-redux"
 import Delay from "../delay/Delay"
 import {Tab, Tabs} from "react-bootstrap"
+import {isStopNameValid} from "../search/Search"
 
 class Stop extends React.Component {
 
@@ -14,9 +15,7 @@ class Stop extends React.Component {
         this.props.onStopSearched(stop)
     }
 
-    isStopNameValid = () => stopNames.includes(this.props.stopName)
-
-    renderStopCodes() {
+    renderStopCodes = () => {
         return (
         	<Tabs>
 				{this.props.stop.codes.map(this.renderStopCode)}
@@ -36,7 +35,7 @@ class Stop extends React.Component {
 	}
 
     render() {
-        if (!this.isStopNameValid()) {
+        if (!isStopNameValid(this.props.stopName)) {
             return <Redirect push to="/404"/>
         }
 

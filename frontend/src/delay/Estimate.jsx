@@ -33,7 +33,7 @@ export default class Estimate extends React.Component {
         )
     }
 
-	renderTab(stop) {
+	renderTab = (stop) => {
     	if (this.state.delayMap[stop.key]) {
 			return (
 				<Tab key={stop.key} eventKey={stop.key} title={stop.title}>

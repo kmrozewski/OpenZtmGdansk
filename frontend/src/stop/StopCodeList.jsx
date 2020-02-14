@@ -4,6 +4,7 @@ import {getStopByName} from "../global/api"
 import * as StopActions from "./actions"
 import {Link} from "react-router-dom"
 import {Accordion, Card, Button} from "react-bootstrap"
+import {isStopNameValid} from '../search/Search'
 
 class StopCodeList extends React.Component {
 
@@ -23,13 +24,13 @@ class StopCodeList extends React.Component {
     }
 
     render() {
-        if (this.props.stop.codes) {
+        if (this.props.stop.codes && isStopNameValid(this.props.stopName)) {
             return (
-                <Accordion>
+                <Accordion defaultActiveKey="0">
                     <Card>
                         <Card.Header>
                             <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                Lista przystanków
+                                Lista przystanków - {this.props.stopName}
                             </Accordion.Toggle>
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
@@ -44,7 +45,7 @@ class StopCodeList extends React.Component {
             )
         }
 
-        return (<h3>{this.props.title}</h3>)
+        return (<h3>Nie ma przystanku o nazwie "{this.props.title}"</h3>)
     }
 
     getPath = (code) => '/stop/' + this.props.stopName + '/' + code + '/'

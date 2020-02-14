@@ -53,31 +53,30 @@ class NearestParams extends React.Component {
         })
     }
 
-    renderRangeSlider() {
+    renderRangeSlider = () => {
         return (
-            <React.Fragment>
+            <>
                 <p>Szukaj przystanków w zasięgu {this.props.range}m</p>
                 <Slider min={0} max={1200} defaultValue={this.props.range} step={100} dots={true}
                         marks={rangeMarks}
                         onAfterChange={this.handleStopRangeChange} />
-            </React.Fragment>
+            </>
         )
     }
 
-    renderLimitSlider() {
+    renderLimitSlider = () => {
         return (
-            <React.Fragment>
+            <>
                 <p>Ogranicz wyszukiwanie do {this.props.limit} przystanków</p>
                 <Slider min={5} max={30} defaultValue={this.props.limit} step={5} dots={true}
                         marks={limitMarks}
                         style={{marginBottom: "2rem"}}
                         onAfterChange={this.handleStopLimitChange} />
-            </React.Fragment>
+            </>
         )
     }
 
     render() {
-        console.log('[NearestParams] isLoading', this.props.isLoading)
         return (
             <Accordion>
                 <Card>

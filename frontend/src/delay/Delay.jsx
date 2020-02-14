@@ -11,6 +11,8 @@ export default class Delay extends React.PureComponent {
             return this.props.delays.map(this.renderBus)
         }
 
-        return (<h3>Brak pojazdów</h3>)
+        return (
+            <h3>Brak pojazdów</h3>
+        )
     }
 }
