@@ -1,70 +1,50 @@
 import React from 'react'
 import StopCodeList from "./StopCodeList"
 import Delay from "../delay/Delay"
-import {connect} from "react-redux"
-import {getDelaysAggregated} from "../global/api"
+import {getStopIdsByNameAndCode} from "../global/api";
+import Spinner from "../spinner/withSpinner";
 
+export default class StopChild extends React.Component {
 
-class StopChild extends React.Component {
-
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
 
         this.state = {
-            isLoading: true,
-            stopIds  : [],
-            delays   : []
+            stopIds: [],
         }
     }
 
-    async componentDidMount() {
-        if (this.props.stop.codes && this.props.stop.codes.length > 0) {
-            await this.getDelays()
-        }
+    componentDidMount() {
+        console.log('[StopChild] mounted')
+        this.updateStopIds()
     }
 
-
-    async componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.stopCode !== prevProps.stopCode || this.state.stopIds.length === 0) {
-            await this.getDelays()
-        }
-    }
-
-    renderDelay = () => {
-        if (this.state.stopIds.length > 0) {
-            return (<Delay stopIds={this.state.stopIds} stopCode={this.props.stopCode} delays={this.state.delays}/>)
+    componentDidUpdate(prevProps) {
+        console.log('[StopChild] updated')
+        if (prevProps.stopCode !== this.props.stopCode) {
+            this.updateStopIds()
         }
     }
 
     render() {
-        return (
-            <>
-                <StopCodeList stopName={this.props.stopName} title={this.props.stopName + ' ' + this.props.stopCode}/>
-                {this.renderDelay()}
-            </>
-        )
+        if (this.state.stopIds.length > 0) {
+            return (
+                <>
+                    <StopCodeList stopName={this.props.stopName}
+                                  title={this.props.stopName + ' ' + this.props.stopCode}/>
+
+                    <Delay stopKey={this.props.stopCode} stopIds={this.state.stopIds}/>
+                </>
+            )
+        }
+
+        return (<Spinner/>)
     }
 
-    findStopCode = () => this.props.stop.codes.filter(c => c.code === this.props.stopCode)
-    getStopIds = () => this.findStopCode()[0].stops.map(s => s.id)
-
-    getDelays = async () => {
-        const stopIds = this.getStopIds()
-        const result = await getDelaysAggregated(stopIds)
-
-        this.setState({
-            ...this.state,
-            ...result,
-            stopIds: stopIds,
-        })
-    }
-}
-
-function mapStateToProps(state, ownProps) {
-    return {
-        ownProps,
-        stop: state.stop
+    updateStopIds = async () => {
+        if (this.props.stopName && this.props.stopName) {
+            const stopIds = await getStopIdsByNameAndCode(this.props.stopName, this.props.stopCode)
+            this.setState({stopIds: stopIds})
+        }
     }
 }
-
-export default connect(mapStateToProps)(StopChild)

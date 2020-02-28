@@ -53,6 +53,16 @@ public class SearchController {
         return new ResponseEntity<>(response, OK);
     }
 
+    @RequestMapping(value = "{stopName}/{stopCode}", method = GET)
+    public ResponseEntity getStopIdsByNameAndCode(@PathVariable("stopName") String stopName,
+                                                  @PathVariable("stopCode") String stopCode) {
+
+        val response = searchService.getStopIdsByNameAndCode(stopName, stopCode);
+
+        return new ResponseEntity<>(response, OK);
+    }
+
+
     @RequestMapping(value = "nearest", method = POST, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity getNearestStops(@RequestBody @Valid StopLocalizatorRequest request) {
         val response = nearestStopService.findNearestStopCodes(request);

@@ -1,16 +1,23 @@
 import React from 'react'
-import {connect} from "react-redux"
 import {getStopByName} from "../global/api"
-import * as StopActions from "./actions"
 import {Link} from "react-router-dom"
-import {Accordion, Card, Button} from "react-bootstrap"
+import {Accordion, Button, Card} from "react-bootstrap"
 import {isStopNameValid} from '../search/Search'
 
-class StopCodeList extends React.Component {
+export default class StopCodeList extends React.Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            stop: {}
+        }
+    }
 
     async componentDidMount() {
+        console.log('[StopCodeList] mounted')
         let stop = await getStopByName(this.props.stopName)
-        this.props.onStopSearched(stop)
+        this.setState({stop: stop})
     }
 
     renderStopCodes = (code, index) => {
@@ -24,7 +31,7 @@ class StopCodeList extends React.Component {
     }
 
     render() {
-        if (this.props.stop.codes && isStopNameValid(this.props.stopName)) {
+        if (this.state.stop.codes && isStopNameValid(this.props.stopName)) {
             return (
                 <Accordion defaultActiveKey="0">
                     <Card>
@@ -36,7 +43,7 @@ class StopCodeList extends React.Component {
                         <Accordion.Collapse eventKey="0">
                             <Card.Body>
                                 <ul>
-                                    {this.props.stop.codes.map(this.renderStopCodes)}
+                                    {this.state.stop.codes.map(this.renderStopCodes)}
                                 </ul>
                             </Card.Body>
                         </Accordion.Collapse>
@@ -50,18 +57,3 @@ class StopCodeList extends React.Component {
 
     getPath = (code) => '/stop/' + this.props.stopName + '/' + code + '/'
 }
-
-function mapStateToProps(state, ownProps) {
-    return {
-        ownProps,
-        stop: state.stop
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        onStopSearched: (stop) => dispatch(StopActions.stopsRefreshed(stop))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(StopCodeList)

@@ -100,3 +100,14 @@ export const getNearestStops = async (lat, lon, range, limit) => {
         return {}
     }
 }
+
+export const getStopIdsByNameAndCode = async (stopName, stopCode) => {
+    try {
+        const response = await axios.get(API + 'search/' + stopName + '/' + stopCode)
+
+        return response.data
+    } catch (error) {
+        console.log('Error', error)
+        return []
+    }
+}
