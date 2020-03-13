@@ -3,7 +3,6 @@ import styles from './Delay.css'
 import Bus from "../bus/Bus"
 import {getDelaysAggregated} from "../global/api";
 import Alert from "react-bootstrap/Alert";
-import Alert from "react-bootstrap/Alert";
 
 const INTERVAL_SECONDS = 10000
 
