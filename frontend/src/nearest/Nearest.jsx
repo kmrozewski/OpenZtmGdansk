@@ -48,8 +48,6 @@ class Nearest extends React.Component {
     }
 
     areNearestParamsChanged = (prevProps, currProps) => {
-        // console.log('range', prevProps.range, currProps.range, 'limit', prevProps.limit, currProps.limit)
-
         return prevProps.range !== currProps.range
             || prevProps.limit !== currProps.limit
     }
@@ -93,10 +91,10 @@ class Nearest extends React.Component {
 
     render() {
         return (
-            <React.Fragment>
+            <>
                 <NearestParams/>
                 {this.props.isLoading ? <Spinner/> : this.renderMap()}
-            </React.Fragment>
+            </>
         )
     }
 

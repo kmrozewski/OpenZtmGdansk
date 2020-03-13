@@ -2,6 +2,10 @@ import React from 'react'
 import styles from './Delay.css'
 import Bus from "../bus/Bus"
 import {getDelaysAggregated} from "../global/api";
+import Alert from "react-bootstrap/Alert";
+import Alert from "react-bootstrap/Alert";
+
+const INTERVAL_SECONDS = 10000
 
 //TODO introduce Spinner for every usage of Delay component
 export default class Delay extends React.Component {
@@ -10,18 +14,27 @@ export default class Delay extends React.Component {
         super(props)
 
         this.state = {
-            delays: []
+            delays: [],
+            time: Date.now()
         }
     }
 
     async componentDidMount() {
-        console.log('[Delay] mounted')
         this.updateDelays()
+
+        this.interval = setInterval(() => {
+            this.updateDelays()
+
+            this.setState({...this.state, time: Date.now()})
+        }, INTERVAL_SECONDS)
+    }
+
+    async componentWillUnmount() {
+        clearInterval(this.interval)
     }
 
     async componentDidUpdate(prevProps, prevState) {
         if (JSON.stringify(prevProps.stopIds) !== JSON.stringify(this.props.stopIds)) {
-            console.log('[Delay] updated ', prevProps.stopKey, prevProps.stopIds)
             this.updateDelays()
         }
     }
@@ -30,6 +43,7 @@ export default class Delay extends React.Component {
         const delays = await this.getDelays(this.props.stopIds)
 
         this.setState({
+            ...this.state,
             delays: delays
         })
     }
@@ -38,7 +52,12 @@ export default class Delay extends React.Component {
 
     render() {
         if (this.state.delays.length > 0) {
-            return this.state.delays.map(this.renderBus)
+            return (
+                <>
+                    <Alert style={{marginTop: "5px"}} variant="info">Wyniki są automatycznie odświeżane co 10 sekund.</Alert>
+                    {this.state.delays.map(this.renderBus)}
+                </>
+            )
         }
 
         return (

@@ -15,7 +15,6 @@ export default class StopCodeList extends React.Component {
     }
 
     async componentDidMount() {
-        console.log('[StopCodeList] mounted')
         let stop = await getStopByName(this.props.stopName)
         this.setState({stop: stop})
     }

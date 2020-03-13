@@ -15,12 +15,10 @@ export default class StopChild extends React.Component {
     }
 
     componentDidMount() {
-        console.log('[StopChild] mounted')
         this.updateStopIds()
     }
 
     componentDidUpdate(prevProps) {
-        console.log('[StopChild] updated')
         if (prevProps.stopCode !== this.props.stopCode) {
             this.updateStopIds()
         }
