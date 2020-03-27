@@ -59,6 +59,8 @@ class Nearest extends React.Component {
 
             const stops = await getNearestStops(this.state.position.lat, this.state.position.lng, this.props.range, this.props.limit)
 
+            console.log('[Nearest] stops: ', stops)
+
             this.setState({
                 ...this.state,
                 stops: stops
@@ -69,8 +71,6 @@ class Nearest extends React.Component {
     }
 
     async componentDidUpdate(prevProps, prevState) {
-        // console.log('[Nearest] state changed', this.shouldUpdateNearestStops(prevState, this.state))
-        // console.log('[Nearest] props changed', this.areNearestParamsChanged(prevProps, this.props))
         if (this.shouldUpdateNearestStops(prevState, this.state) || this.areNearestParamsChanged(prevProps, this.props)) {
             await this.findNearestStops()
         }
