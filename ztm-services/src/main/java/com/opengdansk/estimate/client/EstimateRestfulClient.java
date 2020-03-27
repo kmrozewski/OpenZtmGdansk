@@ -5,7 +5,6 @@ import com.opengdansk.estimate.model.EstimateResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
