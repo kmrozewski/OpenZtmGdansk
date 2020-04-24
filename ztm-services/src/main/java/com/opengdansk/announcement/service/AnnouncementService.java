@@ -17,6 +17,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AnnouncementService {
 
+    private static final String REPLACEMENT = " ";
+    private static final String WHITESPACES = " +";
+
     @NonNull
     private final RestTemplate restTemplate;
 
@@ -29,7 +32,12 @@ public class AnnouncementService {
                 .getMessages()
                 .stream()
                 .map(StopDisplayMessage::getMessage)
+                .map(this::trimWhitespaces)
                 .distinct()
                 .collect(Collectors.toList());
+    }
+
+    private String trimWhitespaces(String message) {
+        return message.replaceAll(WHITESPACES, REPLACEMENT);
     }
 }
