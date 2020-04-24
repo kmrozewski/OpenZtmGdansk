@@ -9,9 +9,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
-import static java.util.Collections.emptyList;
+import static java.util.Collections.emptyMap;
+import static java.util.function.Function.identity;
 
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -24,16 +27,19 @@ public class LocationRestfulClient {
     @NonNull
     private final ZtmApiConfiguration configuration;
 
-    public List<VehicleLocation> getLocation() {
+    public Map<Long, VehicleLocation> getLocation() {
         val url = buildUrl();
 
         LocationResponse response = restTemplate.getForObject(url, LocationResponse.class);
 
         if (response == null || response.getVehicles() == null) {
-            return emptyList();
+            return emptyMap();
         }
 
-        return response.getVehicles();
+        return response
+                .getVehicles()
+                .stream()
+                .collect(Collectors.toMap(VehicleLocation::getVehicleId, identity()));
     }
 
     private String buildUrl() {
