@@ -16,4 +16,5 @@ public class ZtmApiConfiguration {
 
     private Integer executorPoolCount;
     private String apiUrl;
+    private String stopTableListUrl;
 }

@@ -20,6 +20,9 @@ public class VehicleLocation {
     @JsonProperty("VehicleCode")
     private String vehicleCode;
 
+    @JsonProperty("VehicleService")
+    private String vehicleService;
+
     @JsonProperty("Lat")
     private Double lat;
 
@@ -31,4 +34,14 @@ public class VehicleLocation {
 
     @JsonProperty("GPSQuality")
     private Integer gpsQuality;
+
+    @JsonProperty("Line")
+    private String line;
+
+    // API docs says it's tripId
+    @JsonProperty("Route")
+    private String tripId;
+
+    @JsonProperty("Delay")
+    private Integer delay;
 }
