@@ -18,10 +18,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 
 import static java.util.Collections.emptyList;
 import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toMap;
 
 @Component
 public class StopService {
@@ -34,12 +36,22 @@ public class StopService {
     @Autowired
     private ZtmApiConfiguration configuration;
 
-    public Map<String, Map<String, List<Stop>>> groupStops() {
+    public Map<String, Map<String, Stop>> groupStops() {
         return getStops()
                 .stream()
                 .filter(stop -> nonNull(stop.getStopName()))
                 .filter(stop -> nonNull(stop.getStopCode()))
-                .collect(groupingBy(Stop::getStopName, groupingBy(Stop::getStopCode)));
+                .filter(stop -> nonNull(stop.getZoneName()))
+                .collect(groupingBy(this::createUniqueStopName, toMap(Stop::getStopCode, Function.identity(), (stop1, stop2) -> stop1)));
+    }
+
+    private String createUniqueStopName(Stop stop) {
+        return stop
+                .getStopName()
+                .concat(" ")
+                .concat("(")
+                .concat(stop.getZoneName())
+                .concat(")");
     }
 
     private List<Stop> getStops() {

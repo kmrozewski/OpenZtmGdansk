@@ -48,7 +48,7 @@ export default class Bus extends React.Component {
         return (
             <Card bg={this.props.delay.delayInSeconds < 0 ? "danger" : "success"} text="white" style={{marginTop: '1rem'}}>
                 <Card.Header>
-                    {this.renderHeader()}
+                    {this.renderHeader()} ({this.props.delay.vehicleCode})
                 </Card.Header>
                 <Card.Body>
                     <Card.Text>{this.props.delay.delayInSeconds < 0 ? "Opóźniony o" : "Przyspieszony o"} {formatSeconds(this.props.delay.delayInSeconds)}</Card.Text>

@@ -57,7 +57,7 @@ export const getRouteById = async (routeId) => {
 
 export const getStopByName = async (stopName) => {
     try {
-        const result = await axios.get(API + 'search/' + stopName)
+        const result = await axios.get(API + 'stop/' + stopName)
         return result.data
     } catch (error) {
         console.log('Error', error)
@@ -104,6 +104,28 @@ export const getNearestStops = async (lat, lon, range, limit) => {
 export const getStopIdsByNameAndCode = async (stopName, stopCode) => {
     try {
         const response = await axios.get(API + 'search/' + stopName + '/' + stopCode)
+
+        return response.data
+    } catch (error) {
+        console.log('Error', error)
+        return []
+    }
+}
+
+export const getVehicles = async () => {
+    try {
+        const response = await axios.get(API + "/location")
+
+        return response.data
+    } catch (error) {
+        console.log('Error', error)
+        return {}
+    }
+}
+
+export const getStopNames = async () => {
+    try {
+        const response = await axios.get(API + "/stop/names")
 
         return response.data
     } catch (error) {

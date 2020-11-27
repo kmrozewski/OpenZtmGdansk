@@ -2,11 +2,11 @@ import React from 'react'
 import 'react-bootstrap-typeahead/css/Typeahead.css'
 import {Typeahead} from 'react-bootstrap-typeahead'
 import {Redirect} from 'react-router'
-import {stops as stopNames} from '../stop/stops'
+import {connect} from "react-redux";
 
-export const isStopNameValid = (stopName) => stopNames.includes(stopName)
+export const isStopNameValid = (stopName, stopNames) => stopNames.includes(stopName)
 
-export default class Search extends React.Component {
+class Search extends React.Component {
 
 	constructor() {
 		super()
@@ -18,7 +18,7 @@ export default class Search extends React.Component {
 	}
 
 	stopSearched = (selected) => {
-		if (isStopNameValid(selected[0])) {
+		if (isStopNameValid(selected[0], this.props.stopNames)) {
 			this.setState({
 				stopName: selected,
 				redirect: true
@@ -37,10 +37,18 @@ export default class Search extends React.Component {
 	    			caseSensitive={false}
 	    			ignoreDiacritics={true}
 	    			minLength={3}
-	    			options={stopNames}
+	    			options={this.props.stopNames}
 	    			placeholder="Wyszukaj przystanek..."
 	    			onChange={this.stopSearched}
 	    		/>
     	)
     }
 }
+
+function mapStateToProps(state) {
+	return {
+		stopNames: state.stopNames
+	}
+}
+
+export default connect(mapStateToProps)(Search)

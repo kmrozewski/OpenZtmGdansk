@@ -23,7 +23,7 @@ public class StopCache {
     private StopService stopService;
 
     @Getter
-    private Supplier<Map<String, Map<String, List<Stop>>>> cachedMap;
+    private Supplier<Map<String, Map<String, Stop>>> cachedMap;
 
     @Autowired
     public StopCache(StopService stopService) {
@@ -31,7 +31,7 @@ public class StopCache {
         cachedMap = getInstance();
     }
 
-    private Supplier<Map<String, Map<String, List<Stop>>>> getInstance() {
+    private Supplier<Map<String, Map<String, Stop>>> getInstance() {
         val stops = stopService.groupStops();
         log.info("Refreshed cache with {} stops", stops.size());
         return Suppliers.memoizeWithExpiration(() -> stops, 6, TimeUnit.HOURS);

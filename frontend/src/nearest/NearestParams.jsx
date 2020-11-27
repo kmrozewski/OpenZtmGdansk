@@ -1,6 +1,6 @@
 import React from "react"
 import {connect} from "react-redux";
-import {Accordion, Button, Card} from "react-bootstrap";
+import {Accordion, Card} from "react-bootstrap";
 import Slider from "rc-slider";
 import 'rc-slider/assets/index.css';
 import * as NearestParamsActions from "./actions"
@@ -59,7 +59,7 @@ class NearestParams extends React.Component {
                 <p>Szukaj przystanków w zasięgu {this.props.range}m</p>
                 <Slider min={0} max={1200} defaultValue={this.props.range} step={100} dots={true}
                         marks={rangeMarks}
-                        onAfterChange={this.handleStopRangeChange} />
+                        onAfterChange={this.handleStopRangeChange}/>
             </>
         )
     }
@@ -71,7 +71,7 @@ class NearestParams extends React.Component {
                 <Slider min={5} max={30} defaultValue={this.props.limit} step={5} dots={true}
                         marks={limitMarks}
                         style={{marginBottom: "2rem"}}
-                        onAfterChange={this.handleStopLimitChange} />
+                        onAfterChange={this.handleStopLimitChange}/>
             </>
         )
     }
@@ -80,11 +80,9 @@ class NearestParams extends React.Component {
         return (
             <Accordion>
                 <Card>
-                    <Card.Header>
-                        <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                            Ustawienia wyszukiwania
-                        </Accordion.Toggle>
-                    </Card.Header>
+                    <Accordion.Toggle as={Card.Header} variant="link" eventKey="0">
+                        Ustawienia wyszukiwania
+                    </Accordion.Toggle>
                     <Accordion.Collapse eventKey="0">
                         <Card.Body>
                             {this.renderRangeSlider()}

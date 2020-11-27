@@ -1,7 +1,6 @@
 import React from 'react'
 import {Redirect} from 'react-router'
 import {getStopByName} from '../global/api'
-import {stops as stopNames} from './stops'
 import * as StopActions from "./actions"
 import {connect} from "react-redux"
 import Delay from "../delay/Delay"
@@ -11,7 +10,9 @@ import {isStopNameValid} from "../search/Search"
 class Stop extends React.Component {
 
     async componentDidMount() {
+        console.log('[Stop] mounted')
         let stop = await getStopByName(this.props.stopName)
+        console.log('[Stop] ', stop)
         this.props.onStopSearched(stop)
     }
 
@@ -35,7 +36,7 @@ class Stop extends React.Component {
 	}
 
     render() {
-        if (!isStopNameValid(this.props.stopName)) {
+        if (!isStopNameValid(this.props.stopName, this.props.stopNames)) {
             return <Redirect push to="/404"/>
         }
 
@@ -52,7 +53,8 @@ class Stop extends React.Component {
 function mapStateToProps(state, ownProps) {
     return {
         ownProps,
-        stop: state.stop
+        stop: state.stop,
+        stopNames: state.stopNames
     }
 }
 

@@ -8,3 +8,10 @@ export function stopsRefreshed(stop) {
 		stop
 	}
 }
+
+export function stopNamesRefreshed(names) {
+	return {
+		type: ActionTypes.stopRefreshed,
+		names
+	}
+}
