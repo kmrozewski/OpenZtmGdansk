@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
 public class ZtmApiConfiguration {
 
     private Integer executorPoolCount;
-    private String estimateServiceUrl;
+    private String apiUrl;
     private String stopTableListUrl;
-    private String displayMessageListUrl;
 }

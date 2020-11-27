@@ -37,7 +37,7 @@ public class AnnouncementServiceTest {
 
     @Before
     public void setUpMocks() {
-        when(apiConfiguration.getDisplayMessageListUrl()).thenReturn(DISPLAY_MESSAGE_LIST_URL);
+        when(apiConfiguration.getApiUrl() + "/displayMessages").thenReturn(DISPLAY_MESSAGE_LIST_URL);
         when(restTemplate.getForObject(DISPLAY_MESSAGE_LIST_URL, StopDisplayMessageResponse.class))
                 .thenReturn(messageResponse);
     }

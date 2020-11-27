@@ -20,6 +20,10 @@ public class Route {
     @JsonProperty("routeShortName")
     private String shortName;
 
-    @JsonProperty("routeLongName")
     private String longName;
+
+    @JsonProperty("routeLongName")
+    public void setLongName(String longName) {
+        this.longName = longName.replaceAll("ostowice", "Łostowice");
+    }
 }

@@ -17,6 +17,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AnnouncementService {
 
+    private static final String REPLACEMENT = " ";
+    private static final String WHITESPACES = " +";
+    private static final String DISPLAY_MESSAGES = "/displayMessages";
+
     @NonNull
     private final RestTemplate restTemplate;
 
@@ -25,11 +29,16 @@ public class AnnouncementService {
 
     public List<String> getMessagesDistinct() {
         return Objects.requireNonNull(restTemplate
-                .getForObject(configuration.getDisplayMessageListUrl(), StopDisplayMessageResponse.class))
+                .getForObject(configuration.getApiUrl() + DISPLAY_MESSAGES, StopDisplayMessageResponse.class))
                 .getMessages()
                 .stream()
                 .map(StopDisplayMessage::getMessage)
+                .map(this::trimWhitespaces)
                 .distinct()
                 .collect(Collectors.toList());
+    }
+
+    private String trimWhitespaces(String message) {
+        return message.replaceAll(WHITESPACES, REPLACEMENT);
     }
 }

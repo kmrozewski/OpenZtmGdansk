@@ -39,12 +39,29 @@ public class SearchController {
         return new ResponseEntity<>(response, OK);
     }
 
+    @RequestMapping(value = "ids", method = GET)
+    public ResponseEntity getAllStopWithIds() {
+        val response = searchService.getAllStopIds();
+
+        return new ResponseEntity<>(response, OK);
+    }
+
     @RequestMapping(value = "{stopName}", method = GET)
     public ResponseEntity getStopsByName(@PathVariable("stopName") String stopName) {
         val response = searchService.getStopByName(stopName);
 
         return new ResponseEntity<>(response, OK);
     }
+
+    @RequestMapping(value = "{stopName}/{stopCode}", method = GET)
+    public ResponseEntity getStopIdsByNameAndCode(@PathVariable("stopName") String stopName,
+                                                  @PathVariable("stopCode") String stopCode) {
+
+        val response = searchService.getStopIdsByNameAndCode(stopName, stopCode);
+
+        return new ResponseEntity<>(response, OK);
+    }
+
 
     @RequestMapping(value = "nearest", method = POST, consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity getNearestStops(@RequestBody @Valid StopLocalizatorRequest request) {
